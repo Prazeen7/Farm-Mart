@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+* {
+  user-select: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Play", sans-serif; /* Applying the Play font */
+    font-weight: 700; /* Setting font weight to 700 */
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    
+}
+
+header {
+    background-color: #0C1618;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    
+}
+
+
+.logo img {
+    height: 50px; 
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s; /* Smooth transition for color change */
+    font-size: 18px; /* Increase font size */
+}
+
+nav ul li a.active {
+  color: #0c9a42; /* Change text color for active item */
+}
+
+nav ul li a:hover {
+    color: #0c9a42; /* Change text color on hover */
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.search-form {
+    margin-right: 20px;
+}
+
+.search-form input[type="text"] {
+    padding: 5px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+.search-form button {
+    background-color: #096A2E; /* Set background color to #096A2E */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-signup button {
+    background-color: transparent; /* Set initial background to transparent */
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for color change */
+}
+
+.login-signup button:hover {
+    background-color: #096A2E; /* Change background color on hover */
+}
+
+header .cart-icon {
+  margin-right: 10px; /* Adjust the margin as needed to move the box-icon */
+  width: 55px;
+  height: 30px;
+  cursor: pointer; /* Set cursor to pointer */
+  transition: width 0.3s, height 0.3s, color 0.3s, font-size 0.3s; /* Add transition for width, height, color, and font-size */
+}
+
+header .cart-icon:hover {
+  width: 58px;
+  height: 33px;
+}
+
+/* Styles for discount banner */
+.discount-banner {
+    background: linear-gradient(to top, rgba(203, 232, 232, 1), rgba(255, 255, 255, 0)); /* Gradient background */
+    color: #000000; /* Black text color */
+    padding: 50px 20px; /* Add padding */
+    text-align: center; /* Center-align text */
+    font-size: 24px; /* Increase font size */
+    font-weight: bold; /* Make text bold */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.discount-banner .banner-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.discount-banner h2 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.discount-banner p {
+    margin: 20px 0;
+}
+
+.product-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.product-images img {
+    max-width: 200px;
+    height: auto;
+}
+
+.product-listing {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.product {
+    width: 200px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.product img {
+    width: 160px; 
+    height: 160px; 
+}
+
+.product h3 {
+    margin: 10px 0;
+}
+
+.product p {
+    font-weight: bold;
+    color: #0c9a42;
+}
+
+.product button {
+    background-color: #0c9a42;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product button:hover {
+    background-color: #096A2E;
+}
+
+/* Styles for "See Details" button */
+.product .details-btn {
+    background-color: #fff; /* White background color */
+    color: #000; /* Black text color */
+    border: 1px solid #000; /* Black border */
+    padding: 6px 12px; /* Padding */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s; /* Smooth transition */
+    margin-top: 10px; /* Add space between buttons */
+}
+
+.product .details-btn:hover {
+    background-color: #ddd; /* Hover background color */
+}
+.most-selling-heading {
+    margin-left: 10px;
+}

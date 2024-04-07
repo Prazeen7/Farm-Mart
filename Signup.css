@@ -1,0 +1,110 @@
+/* Global styles */
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+* {
+    user-select: none;
+}
+
+body {
+    font-family: "Play", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    background-color: #0C1618;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.back-button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+}
+
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.signup-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    text-align: center;
+}
+
+.signup-container h2 {
+    margin-bottom: 20px;
+}
+
+.input-container {
+    position: relative; /* Position container relatively */
+}
+
+.signup-form input {
+    width: calc(100% - 40px); /* Adjust width to accommodate icon */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    box-sizing: border-box;
+}
+
+.password-toggle {
+    position: absolute; /* Position icon absolutely */
+    right: 22px;
+    top: 33%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s;
+}
+
+.signup-form input[type="submit"] {
+    background-color: #096A2E;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.signup-form input[type="submit"]:hover {
+    background-color: #0A4E23;
+}
+
+.signup-form input[type="submit"]:focus {
+    outline: none;
+}
+
+.signup-form input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.signup-container p {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.signup-container p a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+}
+
+.signup-container p a:hover {
+    text-decoration: underline;
+}
