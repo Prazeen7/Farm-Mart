@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+body {
+    font-family: "Play", sans-serif; /* Applying the Play font */
+    font-weight: 700; /* Setting font weight to 700 */
+    font-style: normal;
+    background-color: #0C1618;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    width: 300px;
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px 35px 10px 10px; /* Added padding to accommodate icon */
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+    color: white;
+    box-sizing: border-box;
+}
+
+.login-form input[type="submit"] {
+    background-color: #096A2E;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: #0A4E23; /* Darker shade on hover */
+}
+
+.login-form input[type="submit"]:focus {
+    outline: none; /* Remove outline on focus */
+}
+
+.login-form input[type="text"]::placeholder,
+.login-form input[type="password"]::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Lighter text color for placeholders */
+}
+
+/* Register link */
+.login-container p {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login-container p a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+}
+
+.login-container p a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Back button */
+.back-button {
+    background-color: transparent; /* Set background color to transparent */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute; /* Position the button absolutely */
+    top: 10px; /* Adjust top position */
+    left: 10px; /* Adjust left position */
+    z-index: 1; /* Ensure it appears above other elements */
+}
+
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white on hover */
+}
+
+
+/* Password toggle icon */
+.password-input-container {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 31%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s;
+}
+
+.back-button,
+.login-container,
+.login-container * {
+    user-select: none;
+}
