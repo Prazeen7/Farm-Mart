@@ -1,9 +1,9 @@
 <?php
 // Database connection parameters
-$servername = "localhost"; // Change this to your database server
-$username = "root"; // Change this to your database username
-$password = ""; // Change this to your database password
-$database = "farmamart"; // Change this to your database name
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$database = "farmmart"; 
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -19,18 +19,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     // Query to check if the username and password match
-    $sql = "SELECT * FROM users WHERE email = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM user WHERE email = '$username' AND password = '$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
         // Login successful
-        header("Location: login.html?message=success");
-        exit();
+        echo "success";
     } else {
         // Login unsuccessful
-        header("Location: login.html?message=failed");
-        exit();
+        echo "failed";
     }
+    
+    exit(); // Exit PHP script after sending response
 }
 
 // Close connection

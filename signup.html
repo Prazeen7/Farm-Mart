@@ -10,7 +10,7 @@
     <div class="signup-container">
         <button class="back-button">&#8249; Back</button>
         <h2>Signup</h2>
-        <form class="signup-form" action="signup.php" method="post">
+        <form class="signup-form" onsubmit="event.preventDefault(); signup();">
             <div class="input-container">
                 <input type="text" name="fullname" placeholder="Full Name" required>
             </div>

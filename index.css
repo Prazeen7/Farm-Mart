@@ -9,8 +9,8 @@ html {
 }
 
 body {
-    font-family: "Play", sans-serif; /* Applying the Play font */
-    font-weight: 700; /* Setting font weight to 700 */
+    font-family: "Play", sans-serif; 
+    font-weight: 700; 
     font-style: normal;
     margin: 0;
     padding: 0;
@@ -53,16 +53,16 @@ nav ul li:last-child {
 nav ul li a {
     text-decoration: none;
     color: white;
-    transition: color 0.3s; /* Smooth transition for color change */
-    font-size: 18px; /* Increase font size */
+    transition: color 0.3s; 
+    font-size: 18px; 
 }
 
 nav ul li a.active {
-  color: #0c9a42; /* Change text color for active item */
+  color: #0c9a42; 
 }
 
 nav ul li a:hover {
-    color: #0c9a42; /* Change text color on hover */
+    color: #0c9a42;
 }
 
 .user-actions {
@@ -90,25 +90,25 @@ nav ul li a:hover {
 }
 
 .login-signup button {
-    background-color: transparent; /* Set initial background to transparent */
+    background-color: transparent; 
     color: #fff;
     border: 1px solid #fff;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s; /* Smooth transition for color change */
+    transition: background-color 0.3s; 
 }
 
 .login-signup button:hover {
-    background-color: #096A2E; /* Change background color on hover */
+    background-color: #096A2E; 
 }
 
 header .cart-icon {
-  margin-right: 10px; /* Adjust the margin as needed to move the box-icon */
+  margin-right: 10px; 
   width: 55px;
   height: 30px;
-  cursor: pointer; /* Set cursor to pointer */
-  transition: width 0.3s, height 0.3s, color 0.3s, font-size 0.3s; /* Add transition for width, height, color, and font-size */
+  cursor: pointer; 
+  transition: width 0.3s, height 0.3s, color 0.3s, font-size 0.3s; 
 }
 
 header .cart-icon:hover {
@@ -119,12 +119,12 @@ header .cart-icon:hover {
 /* Styles for discount banner */
 .discount-banner {
     background: linear-gradient(to top, rgba(203, 232, 232, 1), rgba(255, 255, 255, 0)); /* Gradient background */
-    color: #000000; /* Black text color */
-    padding: 50px 20px; /* Add padding */
-    text-align: center; /* Center-align text */
-    font-size: 24px; /* Increase font size */
-    font-weight: bold; /* Make text bold */
-    cursor: pointer; /* Change cursor to pointer on hover */
+    color: #000000;
+    padding: 50px 20px; 
+    text-align: center; 
+    font-size: 24px; 
+    font-weight: bold; 
+    cursor: pointer; 
 }
 
 .discount-banner .banner-content {
@@ -198,14 +198,14 @@ header .cart-icon:hover {
 
 /* Styles for "See Details" button */
 .product .details-btn {
-    background-color: #fff; /* White background color */
-    color: #000; /* Black text color */
-    border: 1px solid #000; /* Black border */
-    padding: 6px 12px; /* Padding */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Cursor style */
-    transition: background-color 0.3s; /* Smooth transition */
-    margin-top: 10px; /* Add space between buttons */
+    background-color: #fff; 
+    color: #000; 
+    border: 1px solid #000; 
+    padding: 6px 12px; 
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px; 
 }
 
 .product .details-btn:hover {
@@ -216,6 +216,6 @@ header .cart-icon:hover {
 }
 
 .main-content {
-  padding-top: 0px; /* Adjust this value based on your navigation bar height */
+  padding-top: 0px; 
   height: 100vh;
 }

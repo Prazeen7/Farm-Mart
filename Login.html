@@ -10,7 +10,7 @@
     <div class="login-container">
         <button class="back-button">&#8249; Back</button>
         <h2>Login</h2>
-        <form class="login-form" action="login.php" method="post"> 
+        <form class="login-form" onsubmit="event.preventDefault(); login();"> 
             <input type="text" name="username" placeholder="Username" required>
             <div class="password-input-container">
                 <input type="password" name="password" id="password" placeholder="Password" required>
@@ -20,7 +20,6 @@
         </form>
         <p>Don't have an account? <a href="signup.html">Register</a></p>
     </div>
-    <script src="loginToggle.js" defer></script>
     <script src="login.js" defer></script>
 </body>
 </html>
