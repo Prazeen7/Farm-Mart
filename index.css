@@ -112,8 +112,7 @@ header .cart-icon {
 }
 
 header .cart-icon:hover {
-  width: 58px;
-  height: 33px;
+    transform: scale(1.1);
 }
 
 /* Styles for discount banner */
@@ -219,3 +218,50 @@ header .cart-icon:hover {
   padding-top: 0px; 
   height: 100vh;
 }
+
+#user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#user-icon:hover {
+    transform: scale(1.1);
+}
+
+#dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+#dropdown-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#dropdown-menu ul li {
+    margin-bottom: 5px;
+}
+
+#dropdown-menu ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 8px 16px;
+    transition: background-color 0.3s;
+}
+
+#dropdown-menu ul li a:hover {
+    background-color: #f0f0f0;
+}
+
