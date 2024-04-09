@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+<header class="header">
+    <button onclick="goBack()" class="back-button">&lt; Back</button>
+    <h1 class="heading">Profile</h1>
+</header>
+
+<div class="container">
+    <div class="profile-info">
+        <h2 class="info-heading">Profile Information</h2>
+        <div class="dp-area">
+            <!-- Display profile picture here -->
+            <img src="Images/user.png" alt="Profile Picture" class="profile-picture">
+        </div>
+        <div class="info">
+            <!-- Display name, email, and password here -->
+            <p><strong>Name:</strong> John Doe</p>
+            <p><strong>Email:</strong> johndoe@example.com</p>
+            <p><strong>Password:</strong> *********</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+</footer>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+</body>
+</html>
