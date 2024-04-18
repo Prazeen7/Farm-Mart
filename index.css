@@ -117,18 +117,22 @@ header .cart-icon:hover {
 
 /* Styles for discount banner */
 .discount-banner {
-    background: linear-gradient(to top, rgba(203, 232, 232, 1), rgba(255, 255, 255, 0)); /* Gradient background */
+    background: linear-gradient(to top, rgba(203, 232, 232, 1), rgba(255, 255, 255, 0));
     color: #000000;
-    padding: 50px 20px; 
-    text-align: center; 
-    font-size: 24px; 
-    font-weight: bold; 
-    cursor: pointer; 
+    padding: 50px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align items horizontally */
+    cursor: pointer;
 }
 
 .discount-banner .banner-content {
     max-width: 800px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align items horizontally */
+    gap: 50px;
 }
 
 .discount-banner h2 {
@@ -138,6 +142,39 @@ header .cart-icon:hover {
 
 .discount-banner p {
     margin: 20px 0;
+}
+
+.text-content {
+    opacity: 0;
+    animation: slideFromLeft 1s ease forwards; /* Text animation */
+}
+
+.product-images img {
+    max-width: 100%; /* Ensure image fits container */
+    height: auto; /* Maintain aspect ratio */
+    animation: slideFromRight 1s ease forwards; /* Image animation */
+}
+
+@keyframes slideFromLeft {
+    from {
+        transform: translateX(-200%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideFromRight {
+    from {
+        transform: translateX(200%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .product-images {
