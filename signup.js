@@ -28,6 +28,8 @@ function signup() {
                 if (xhr.responseText === "success") {
                     // Signup successful, show success message in dialogue box
                     alert("Signup successful");
+                    // Redirect to login page
+                    window.location.href = "login.html";
                 } else {
                     // Signup failed, display error message in dialogue box
                     alert("Email or Password already taken");
