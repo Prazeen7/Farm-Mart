@@ -1,5 +1,21 @@
 const loginbtn = document.getElementById('loginbtn');
 const signbtn = document.getElementById('signbtn');
+const potato = document.getElementById('potato-product');
+const potatohome = document.getElementById('potato-');
+
+
+// Add event listeners to both buttons
+potato.addEventListener('click', function() {
+    // Call the changePage function with the page parameter
+    changePage('pdetails');
+});
+
+// const potatohome = document.getElementById('potato-home');
+// potatohome.addEventListener('click', function() {
+//     // Call the changePage function with the page parameter
+//     changePage('pdetails');
+// });
+
 
 function login(){
     window.location.href = 'Login.html';
@@ -30,6 +46,8 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }
   });
+
+ 
 
 // Function to handle the page change based on the clicked link
 function changePage(page) {

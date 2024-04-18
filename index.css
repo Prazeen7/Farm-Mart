@@ -132,7 +132,7 @@ header .cart-icon:hover {
     display: flex;
     align-items: center;
     justify-content: space-between; /* Align items horizontally */
-    gap: 50px;
+    gap: 100px;
 }
 
 .discount-banner h2 {
