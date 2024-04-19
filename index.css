@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
 * {
-  user-select: none;
+    user-select: none;
 }
 
 html {
@@ -9,12 +9,12 @@ html {
 }
 
 body {
-    font-family: "Play", sans-serif; 
-    font-weight: 700; 
+    font-family: "Play", sans-serif;
+    font-weight: 700;
     font-style: normal;
     margin: 0;
     padding: 0;
-    
+
 }
 
 header {
@@ -27,12 +27,12 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    
+
 }
 
 
 .logo img {
-    height: 50px; 
+    height: 50px;
 }
 
 nav ul {
@@ -53,12 +53,12 @@ nav ul li:last-child {
 nav ul li a {
     text-decoration: none;
     color: white;
-    transition: color 0.3s; 
-    font-size: 18px; 
+    transition: color 0.3s;
+    font-size: 18px;
 }
 
 nav ul li a.active {
-  color: #0c9a42; 
+    color: #0c9a42;
 }
 
 nav ul li a:hover {
@@ -81,7 +81,8 @@ nav ul li a:hover {
 }
 
 .search-form button {
-    background-color: #096A2E; /* Set background color to #096A2E */
+    background-color: #096A2E;
+    /* Set background color to #096A2E */
     color: #fff;
     border: none;
     padding: 5px 10px;
@@ -90,25 +91,25 @@ nav ul li a:hover {
 }
 
 .login-signup button {
-    background-color: transparent; 
+    background-color: transparent;
     color: #fff;
     border: 1px solid #fff;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s; 
+    transition: background-color 0.3s;
 }
 
 .login-signup button:hover {
-    background-color: #096A2E; 
+    background-color: #096A2E;
 }
 
 header .cart-icon {
-  margin-right: 10px; 
-  width: 55px;
-  height: 30px;
-  cursor: pointer; 
-  transition: width 0.3s, height 0.3s, color 0.3s, font-size 0.3s; 
+    margin-right: 10px;
+    width: 55px;
+    height: 30px;
+    cursor: pointer;
+    transition: width 0.3s, height 0.3s, color 0.3s, font-size 0.3s;
 }
 
 header .cart-icon:hover {
@@ -122,7 +123,8 @@ header .cart-icon:hover {
     padding: 50px 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Align items horizontally */
+    justify-content: space-between;
+    /* Align items horizontally */
     cursor: pointer;
 }
 
@@ -131,7 +133,8 @@ header .cart-icon:hover {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Align items horizontally */
+    justify-content: space-between;
+    /* Align items horizontally */
     gap: 100px;
 }
 
@@ -146,13 +149,17 @@ header .cart-icon:hover {
 
 .text-content {
     opacity: 0;
-    animation: slideFromLeft 1s ease forwards; /* Text animation */
+    animation: slideFromLeft 1s ease forwards;
+    /* Text animation */
 }
 
 .product-images img {
-    max-width: 100%; /* Ensure image fits container */
-    height: auto; /* Maintain aspect ratio */
-    animation: slideFromRight 1s ease forwards; /* Image animation */
+    max-width: 100%;
+    /* Ensure image fits container */
+    height: auto;
+    /* Maintain aspect ratio */
+    animation: slideFromRight 1s ease forwards;
+    /* Image animation */
 }
 
 @keyframes slideFromLeft {
@@ -160,6 +167,7 @@ header .cart-icon:hover {
         transform: translateX(-200%);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -171,6 +179,7 @@ header .cart-icon:hover {
         transform: translateX(200%);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -205,8 +214,8 @@ header .cart-icon:hover {
 }
 
 .product img {
-    width: 160px; 
-    height: 160px; 
+    width: 160px;
+    height: 160px;
 }
 
 .product h3 {
@@ -234,26 +243,27 @@ header .cart-icon:hover {
 
 /* Styles for "See Details" button */
 .product .details-btn {
-    background-color: #fff; 
-    color: #000; 
-    border: 1px solid #000; 
-    padding: 6px 12px; 
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 10px; 
+    margin-top: 10px;
 }
 
 .product .details-btn:hover {
-    background-color: #ddd; /* Hover background color */
+    background-color: #ddd;
 }
+
 .most-selling-heading {
     margin-left: 10px;
 }
 
 .main-content {
-  padding-top: 0px; 
-  height: 100vh;
+    padding-top: 0px;
+    height: 100vh;
 }
 
 #user-icon {
@@ -301,4 +311,3 @@ header .cart-icon:hover {
 #dropdown-menu ul li a:hover {
     background-color: #f0f0f0;
 }
-
