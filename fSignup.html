@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <link rel="stylesheet" href="Signup.css">
+</head>
+<body>
+    <div class="signup-container">
+        <button class="back-button">&#8249; Back</button>
+        <h2>Farmer's Signup</h2>
+        <form class="signup-form" onsubmit="event.preventDefault(); signup();">
+            <div class="input-container">
+                <input type="text" name="fullname" placeholder="Full Name" required>
+            </div>
+            <div class="input-container">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-container">
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility('password')">🔒</span>
+            </div>
+            <div class="input-container">
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility('confirm-password')">🔒</span>
+            </div>
+            <input type="submit" value="Signup">
+        </form>
+        <p>Already have an account? <a href="flogin.html">Login</a></p>
+    </div>
+    <script src="fSignup.js" defer></script>
+    <script src="signupToggle.js" defer></script>
+</body>
+</html>

@@ -199,16 +199,17 @@ header .cart-icon:hover {
 
 .product-listing {
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     margin-top: 20px;
+    align-content: stretch;
 }
 
 .product {
     width: 200px;
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ddd;
     text-align: center;
 }
@@ -310,4 +311,7 @@ header .cart-icon:hover {
 
 #dropdown-menu ul li a:hover {
     background-color: #f0f0f0;
+}
+.new-products{
+    margin-left: 10px;
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+    <div class="login-container">
+        <button class="back-button">&#8249; Back</button>
+        <h2>Farmer's Login</h2>
+        <form class="login-form" onsubmit="event.preventDefault(); login();"> 
+            <input type="text" name="username" placeholder="Username" required>
+            <div class="password-input-container">
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility()">🔒</span>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? <a href="fSignup.html">Register</a></p>
+    </div>
+    <script src="fLogin.js" defer></script>
+    <script src="loginToggle.js" defer></script>
+
+</body>
+</html>

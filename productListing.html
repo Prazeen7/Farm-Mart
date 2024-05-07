@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product listing</title>
+    <link rel="stylesheet" href="productsListing.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="farmerIndex.html"><img src="Images/Logo5.png" alt="Farm Mart Logo"></a>
+        </div>
+        <div class="login-signup">
+            <a href="index.html"><img src="Images/logout.png" alt="Logout" id="logout"></a>
+        </div>
+    </header>
+
+    <div class="container">
+        <a href="farmerIndex.html" class="back-btn">Back</a>
+
+        <form id="productForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName" required>
+            </div>
+            <div class="form-group">
+                <label for="productPrice">Price:</label>
+                <input type="text" id="productPrice" name="productPrice" required>
+            </div>
+            <div class="form-group">
+                <label for="productDescription">Description:</label>
+                <textarea id="productDescription" name="productDescription" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="productImage">Product Image:</label>
+                <input type="file" id="productImage" name="productImage" accept="image/*" required>
+            </div>
+            <button type="button" class= "sell-btn" onclick="submitProduct()">Sell</button>
+        </form>
+        
+        
+    </div>
+    <script src="productListing.js"></script>
+</body>
+</html>

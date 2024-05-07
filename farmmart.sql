@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2024 at 05:14 PM
+-- Generation Time: May 02, 2024 at 04:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,47 +24,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
---
-
-CREATE TABLE `products` (
-  `email` varchar(50) NOT NULL,
-  `id` int(50) NOT NULL,
-  `price` int(50) NOT NULL,
-  `amount` int(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `Mode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`name`, `email`, `password`) VALUES
-('Ashok Dhungana ', 'ashok@gmail.com', '$2y$10$HdbvHFKcBYEboWMCwq9uoOwQotaUIV7oY.ancUiO6U2'),
-('Prajin Singh', 'prajin@gmail.com', '12345'),
-('Samika Bhandari ', 'samika@gmail.com', '159753');
+INSERT INTO `user` (`name`, `email`, `password`, `Mode`) VALUES
+('Ashok Dhungana ', 'ashok@gmail.com', '$2y$10$HdbvHFKcBYEboWMCwq9uoOwQotaUIV7oY.ancUiO6U2', 'U'),
+('Gagan Khadka', 'gagan@gmail.com', 'gagan', 'U'),
+('Prajin Singh', 'prajin@gmail.com', '12345', 'U'),
+('Samika Bhandari ', 'samika@gmail.com', '159753', 'U'),
+('Yojana Ghimire ', 'yojana@gmail.com', '7595', 'U');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`email`),
-  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `user`

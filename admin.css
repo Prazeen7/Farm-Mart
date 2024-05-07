@@ -1,0 +1,34 @@
+.product {
+    margin: 20px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    
+}
+
+.product-list{
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    align-content: stretch;
+}
+
+img {
+    max-width: 200px;
+    height: auto;
+}
+
+.no-products {
+    text-align: center;
+    font-size: 24px;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Product</title>
+</head>
+<body>
+    <div class="product-display">
+        <h1 id="productName"></h1>
+        <p id="productPrice"></p>
+        <p id="productDescription"></p>
+        <img id="productImage" src="" alt="Product Image">
+    </div>
+
+    <script>
+        window.onload = function() {
+            const product = JSON.parse(localStorage.getItem('product'));
+            if (product) {
+                document.getElementById('productName').textContent = product.name;
+                document.getElementById('productPrice').textContent = 'Price: ' + product.price;
+                document.getElementById('productDescription').textContent = product.description;
+                document.getElementById('productImage').src = product.image;
+            } else {
+                document.body.innerHTML = '<p>Product not found.</p>';
+            }
+        };
+    </script>
+</body>
+</html>

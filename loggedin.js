@@ -67,6 +67,8 @@ function changePage(page) {
             if (xhr.status === 200) {
                 // Update the content div with the response text
                 document.querySelector('.main-content').innerHTML = xhr.responseText;
+                // Scroll to the top of the page
+                window.scrollTo(0, 0);
             } else {
                 // Handle errors (e.g., page not found)
                 console.error('Failed to load ' + page + '.html');
