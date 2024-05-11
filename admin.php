@@ -19,13 +19,13 @@ $username = isset($_GET['username']) ? $_GET['username'] : '';
 $tableName = "table_" . preg_replace('/[^A-Za-z0-9_]/', '_', strtolower($username));
 
 // Modify the query to check for admin approval based on the provided username
-$sql = "SELECT id, name, price, description, image FROM $tableName WHERE Admin = 'Disapproved'";
+$sql = "SELECT id, name, price, description, image FROM products WHERE Admin = 'Disapproved'";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
 
 $products = [];
-if ($result->num_rows > 0) {
+if ($result->num_rows > 0 ) {
     while($row = $result->fetch_assoc()) {
         $products[] = $row;
     }

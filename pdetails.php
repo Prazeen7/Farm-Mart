@@ -17,38 +17,25 @@ $productId = isset($_GET['productId']) ? $conn->real_escape_string($_GET['produc
 
 // Check if product ID is not empty
 if (!empty($productId)) {
-    // Get all table names that match the pattern "table_"
-    $tablesQuery = "SHOW TABLES LIKE 'table_%'";
-    $tablesResult = $conn->query($tablesQuery);
+    // Fetch product details from the database based on the product ID
+    $sql = "SELECT name, price, description, image FROM products WHERE id = $productId";
+    $result = $conn->query($sql);
 
-    if ($tablesResult->num_rows > 0) {
-        $products = [];
-
-        // Iterate over each table
-        while ($tableRow = $tablesResult->fetch_row()) {
-            $tableName = $tableRow[0];
-
-            // Fetch product details from the table based on product ID
-            $sql = "SELECT name, price, description, image FROM $tableName WHERE id = $productId";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                // Fetch product details and append them to the products array
-                while ($row = $result->fetch_assoc()) {
-                    $products[] = $row;
-                }
-            }
-        }
-
-        // Output the product details as JSON
-        echo json_encode($products);
+    if ($result->num_rows > 0) {
+        // Fetch product details
+        $product = $result->fetch_assoc();
+        // Output the product details
+        echo "<h2>{$product['name']}</h2>";
+        echo "<p>Description: {$product['description']}</p>";
+        echo "<p>Price: {$product['price']}</p>";
+        echo "<img src='{$product['image']}' alt='{$product['name']}'>";
     } else {
-        // No matching tables found, return an empty array
-        echo json_encode([]);
+        // Product not found
+        echo "Product not found";
     }
 } else {
-    // If product ID is empty, return an empty array
-    echo json_encode([]);
+    // Product ID is empty
+    echo "Product ID is empty";
 }
 
 $conn->close();

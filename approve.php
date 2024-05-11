@@ -14,20 +14,46 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $productId = $_POST['productId'];
-    $username = $_POST['username']; 
+    $productName = $_POST['productName'];
+    $productPrice = $_POST['productPrice'];
+    $productImage = $_POST['productImage'];
+    $username = $_POST['username'];
 
-    // Construct the table name
-    $tableName = "table_" . preg_replace('/[^A-Za-z0-9_]/', '_', strtolower($username));
+    // Get all table names that match the pattern "table_%"
+    $tablesQuery = "SHOW TABLES LIKE 'table_%'";
+    $tablesResult = $conn->query($tablesQuery);
 
-    $sql = "UPDATE $tableName SET Admin = 'Approved' WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $productId);
-    if ($stmt->execute()) {
-        echo "Product approved successfully";
+    if ($tablesResult->num_rows > 0) {
+        // Iterate over each table
+        while ($tableRow = $tablesResult->fetch_row()) {
+            $tableName = $tableRow[0];
+
+            // Prepare and execute the first update query for products table
+            $sql1 = "UPDATE products SET Admin = 'Approved' WHERE id = ?";
+            $stmt1 = $conn->prepare($sql1);
+            $stmt1->bind_param("i", $productId);
+            $stmt1->execute();
+
+            // Prepare and execute the second update query for the dynamic table
+            $sql2 = "UPDATE $tableName SET Admin = 'Approved' WHERE name = ? AND price = ? AND image = ?";
+            $stmt2 = $conn->prepare($sql2);
+            $stmt2->bind_param("sds", $productName, $productPrice, $productImage);
+            $stmt2->execute();
+
+            // Check if both updates were successful
+            if ($stmt1->affected_rows > 0 && $stmt2->affected_rows > 0) {
+                echo "Product approved successfully";
+            } 
+
+            // Close prepared statements
+            $stmt1->close();
+            $stmt2->close();
+        }
     } else {
-        echo "Error approving product: " . $stmt->error;
+        echo "No matching tables found";
     }
-    $stmt->close();
-    $conn->close();
 }
+
+// Close connection
+$conn->close();
 ?>

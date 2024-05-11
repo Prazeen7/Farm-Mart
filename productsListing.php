@@ -53,8 +53,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare("INSERT INTO $tableName (name, price, description, image, fresh) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sisss", $productName, $productPrice, $productDescription, $targetFile, $productStatus);
 
+    $stmt2 = $conn->prepare("INSERT INTO products (name, price, description, image, fresh) VALUES (?, ?, ?, ?, ?)");
+    $stmt2->bind_param("sisss", $productName, $productPrice, $productDescription, $targetFile, $productStatus);
+
     // Execute the statement
-    if ($stmt->execute()) {
+    if ($stmt->execute() && $stmt2->execute()) {
         echo "New product added successfully";
     } else {
         echo "Error: " . $stmt->error;
@@ -62,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Close statement and connection
     $stmt->close();
+    $stmt2->close();
     $conn->close();
 } else {
     echo "No data submitted.";

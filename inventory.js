@@ -5,7 +5,7 @@ window.onload = function() {
     // Check if username is not empty
     if (username) {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "show.php?username=" + encodeURIComponent(username), true);
+        xhr.open("GET", "inventory.php?username=" + encodeURIComponent(username), true);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 var products = JSON.parse(xhr.responseText);

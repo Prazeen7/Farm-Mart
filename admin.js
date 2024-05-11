@@ -1,9 +1,8 @@
 window.onload = function () {
-    // Retrieve the username from localStorage
     var username = localStorage.getItem('username');
 
     if (username) {
-        fetchProducts(username); // Pass the username to the fetchProducts function
+        fetchProducts(username);
     } else {
         console.error("Username not found in localStorage");
     }
@@ -11,12 +10,11 @@ window.onload = function () {
 
 function fetchProducts(username) {
     var xhr = new XMLHttpRequest();
-    // Modify the URL to include the username as a query parameter
     xhr.open("GET", "admin.php?username=" + encodeURIComponent(username), true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var products = JSON.parse(xhr.responseText);
-            displayProducts(products, username); // Pass username to displayProducts
+            displayProducts(products, username);
         }
     };
     xhr.send();
@@ -24,11 +22,11 @@ function fetchProducts(username) {
 
 function displayProducts(products, username) {
     const productList = document.getElementById("productList");
-    productList.innerHTML = ''; // Clear previous products
+    productList.innerHTML = '';
 
     if (products.length === 0) {
         productList.innerHTML = '<h2 class="no-products">No products available</h2>';
-        return; // Exit the function if no products are available
+        return;
     }
 
     products.forEach(function (product) {
@@ -36,23 +34,23 @@ function displayProducts(products, username) {
             <div class="product">
                 <img src="${product.image}" alt="${product.name}">
                 <h3>${product.name}</h3>
-                <p>$${product.price}</p>
-                <button onclick="approveProduct(${product.id}, '${username}')">Approve</button>
+                <p>Rs. ${product.price}</p>
+                <button onclick="approveProduct(${product.id}, '${product.name}', ${product.price}, '${product.image}', '${username}')">Approve</button>
                 <button>Disapprove</button>
             </div> 
         `;
     });
 }
 
-function approveProduct(productId, username) {
+function approveProduct(productId, productName, productPrice, productImage, username) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "approve.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             alert(xhr.responseText);
-            fetchProducts(username); // Refetch products to update the list with the same username
+            fetchProducts(username);
         }
     };
-    xhr.send("productId=" + productId + "&username=" + encodeURIComponent(username));
+    xhr.send("productId=" + productId + "&productName=" + encodeURIComponent(productName) + "&productPrice=" + productPrice + "&productImage=" + encodeURIComponent(productImage) + "&username=" + encodeURIComponent(username));
 }

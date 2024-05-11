@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
     // Retrieve the username from localStorage
     var username = localStorage.getItem('username');
 
@@ -28,7 +28,7 @@ function displayProducts(products) {
         return; // Exit the function if no products are available
     }
 
-    products.forEach(function(product) {
+    products.forEach(function (product) {
         productList.innerHTML += `
             <div class="product">
                 <img src="${product.image}" alt="${product.name}">
@@ -40,20 +40,18 @@ function displayProducts(products) {
         `;
     });
 
-    // Add event listener to each "See Details" button
-    var detailButtons = document.querySelectorAll('.details-btn');
-    detailButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var productId = this.getAttribute('data-id');
-            fetchProductDetails(productId);
+        // Add event listener to each "See Details" button
+        var detailButtons = document.querySelectorAll('.details-btn');
+        detailButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var productId = this.getAttribute('data-id');
+                window.location.href = "pdetails.html?productId=" + encodeURIComponent(productId);
+            });
         });
-    });
+
 }
 
-function fetchProductDetails(productId) {
-    // Perform AJAX request to fetch product details based on productId
-    // Replace the below code with your AJAX request to fetch product details
-    console.log("Fetching details for product with ID:", productId);
-    // Example: Fetch product details using another PHP script and display them
-}
+
+
+
 
