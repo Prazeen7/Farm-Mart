@@ -1,68 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farm Mart</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="show.css">
+    <title>Order Inquiry</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
-    <header>
-        <div class="logo">
-            <a href="index.html"><img src="Images/Logo5.png" alt="Farm Mart Logo"></a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#" class="active" data-page="home">Home</a></li>
-                <li><a href="#" data-page="freshProducts">Fresh Products</a></li>
-                <li><a href="#" data-page="farmer">Become a Farmer</a></li>
-                <li><a href="#" data-page="aboutUs">About Us</a></li>
-                <li><a href="#" data-page="inquire">Inquire</a></li>
-            </ul>
-        </nav>
-
-        <div class="user-actions">
-            <form class="search-form" action="#" method="GET">
-                <input type="text" name="search" placeholder="Search..." required>
-                <button type="submit">Search</button>
-            </form>
-            <box-icon name='cart' color='#0c9a42' class="cart-icon"></box-icon>
-            <div class="login-signup">
-                <button id="loginbtn">Login</button>
-                <button id="signbtn">Sign Up</button>
+    <div class="container">
+        <h1>Customer Inquiries</h1>
+        
+        <form id="inquiryForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
             </div>
-        </div>
-    </header>
-
-    <div class="main-content">
-        <!-- Discount Banner -->
-        <div class="discount-banner" onclick="location.href='#'">
-            <div class="banner-content">
-                <div class="text-content">
-                    <h2>Flash Sale!</h2>
-                    <p>Get discounts on fresh vegetables</p>
-                </div>
-                <div class="product-images">
-                    <img src="Images/sale.png" alt="Flash Sale" class="image-animation">
-                </div>
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
             </div>
-        </div>
-        <h2 class="new-products">Shop Now
-        </h2>
-        <div class="product-list" id="productList">
-            <!-- Products will be inserted here by JavaScript -->
+            <div class="form-group">
+                <label for="subject">Subject of Inquiry:</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" id="submitBtn">Submit Inquiry</button>
+        </form>
+        
+        <div id="responseMessage" style="display: none;">
+            <div id="successMessage">
+                
+            </div>
         </div>
     </div>
-
-
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script src="index.js"></script>
-    <script src="show.js"></script>
+    
+    <script src="form.js"></script>
 </body>
-
 </html>
