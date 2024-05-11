@@ -5,7 +5,7 @@ window.onload = function () {
     // Check if username is not empty
     if (username) {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "freshProducts.php?username=" + encodeURIComponent(username), true);
+        xhr.open("GET", "fPLogin.php?username=" + encodeURIComponent(username), true);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {

@@ -14,13 +14,12 @@
 
     <header>
         <div class="logo">
-            <a href="index.html"><img src="Images/Logo5.png" alt="Farm Mart Logo"></a>
+            <a href="loggedin.html"><img src="Images/Logo5.png" alt="Farm Mart Logo"></a>
         </div>
         <nav>
             <ul>
-                <li><a href="#" data-page="home">Home</a></li>
-                <li><a href="#" class="active" data-page="freshProducts">Fresh Products</a></li>
-                <li><a href="#" data-page="farmer">Become a Farmer</a></li>
+                <li><a href="#" data-page="loggedhome">Home</a></li>
+                <li><a href="#" class="active" data-page="fPLogin">Fresh Products</a></li>
                 <li><a href="#" data-page="aboutUs">About Us</a></li>
                 <li><a href="#" data-page="inquire">Inquire</a></li>
             </ul>
@@ -33,10 +32,14 @@
             </form>
             <box-icon name='cart' color='#0c9a42' class="cart-icon"></box-icon>
             <div class="login-signup">
-                <button id="loginbtn">Login</button>
-                <button id="signbtn">Sign Up</button>
+                <img src="Images/user.png" alt="User Icon" id="user-icon">
+                <!-- Dropdown menu -->
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <ul>
+                        <li><a href="index.html">Logout</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
     </header>
 
     <body>
@@ -46,9 +49,12 @@
                 <!-- Products will be inserted here by JavaScript -->
             </div>
         </div>
+
         <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-        <script src="index.js"></script>
-        <script src="freshProducts.js"></script>
+        <script src="loggedin.js"></script>
+        <script src="drop-down.js"></script>
+        <script src="show.js"></script>
+        <script src="fPLogin.js"></script>
     </body>
 
 </html>

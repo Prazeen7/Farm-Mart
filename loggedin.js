@@ -47,11 +47,13 @@ document.querySelectorAll('nav ul li a').forEach(function (link) {
         var page = this.getAttribute('data-page'); // Get the data-page attribute value\
         if (page === 'loggedhome') {
             window.location.href = 'loggedin.html';
-        }
-        else {
-            changePage(page); // Call the function to load the corresponding page
-        }
-    });
+        } else if (page == 'fPLogin') {
+        window.location.href = 'fPLogin.html';
+    }
+    else {
+        changePage(page); // Call the function to load the corresponding page
+    }
+});
 });
 
 

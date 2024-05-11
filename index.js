@@ -1,42 +1,42 @@
-  const loginbtn = document.getElementById('loginbtn');
-  const signbtn = document.getElementById('signbtn');
-  const potato = document.getElementById('potato-product');
+const loginbtn = document.getElementById('loginbtn');
+const signbtn = document.getElementById('signbtn');
+const potato = document.getElementById('potato-product');
 
-  // // Add event listeners to both buttons
-  // potato.addEventListener('click', function () {
-  //   // Call the changePage function with the page parameter
-  //   changePage('pdetails');
-  // });
+// // Add event listeners to both buttons
+// potato.addEventListener('click', function () {
+//   // Call the changePage function with the page parameter
+//   changePage('pdetails');
+// });
 
-  function login() {
-    window.location.href = 'Login.html';
-  }
+function login() {
+  window.location.href = 'Login.html';
+}
 
-  loginbtn.addEventListener('click', login)
+loginbtn.addEventListener('click', login)
 
-  function signup() {
-    window.location.href = 'signup.html';
-  }
+function signup() {
+  window.location.href = 'signup.html';
+}
 
-  signbtn.addEventListener('click', signup)
+signbtn.addEventListener('click', signup)
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const navLinks = document.querySelectorAll("nav ul li a");
+document.addEventListener("DOMContentLoaded", function () {
+  const navLinks = document.querySelectorAll("nav ul li a");
 
-    navLinks.forEach(function (link) {
-      link.addEventListener("click", function (event) {
-        event.preventDefault(); // Prevent the default link behavior
-        removeActiveClass(); // Remove active class from all links
-        this.classList.add("active"); // Add active class to the clicked link
-      });
+  navLinks.forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent the default link behavior
+      removeActiveClass(); // Remove active class from all links
+      this.classList.add("active"); // Add active class to the clicked link
     });
-
-    function removeActiveClass() {
-      navLinks.forEach(function (link) {
-        link.classList.remove("active");
-      });
-    }
   });
+
+  function removeActiveClass() {
+    navLinks.forEach(function (link) {
+      link.classList.remove("active");
+    });
+  }
+});
 
 
 
@@ -62,20 +62,23 @@ function changePage(page) {
 }
 
 
-  document.querySelectorAll('nav ul li a').forEach(function (link) {
-    link.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent the default link behavior
-        var page = this.getAttribute('data-page'); // Get the data-page attribute value\
-        if (page === 'home') {
-            window.location.href = 'index.html';
-        } else if(page == 'freshProducts'){
-          window.location.href = 'freshProducts.html';
-        }
-        else {
-            changePage(page); // Call the function to load the corresponding page
-        }
-    });
+document.querySelectorAll('nav ul li a').forEach(function (link) {
+  link.addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent the default link behavior
+    var page = this.getAttribute('data-page'); // Get the data-page attribute value\
+    if (page === 'home') {
+      window.location.href = 'index.html';
+    } else if (page == 'freshProducts') {
+      window.location.href = 'freshProducts.html';
+    }
+    else {
+      changePage(page); // Call the function to load the corresponding page
+    }
   });
+});
+
+
+
 
 
 

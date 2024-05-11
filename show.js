@@ -41,13 +41,13 @@ function displayProducts(products) {
     });
 
         // Add event listener to each "See Details" button
-        var detailButtons = document.querySelectorAll('.details-btn');
-        detailButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                var productId = this.getAttribute('data-id');
-                window.location.href = "pdetails.html?productId=" + encodeURIComponent(productId);
-            });
+    var detailButtons = document.querySelectorAll('.details-btn');
+    detailButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var productId = this.getAttribute('data-id');
+            window.location.href = "pdetails.html?productId=" + encodeURIComponent(productId);
         });
+    });
 
 }
 
