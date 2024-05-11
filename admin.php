@@ -12,9 +12,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Modify the query to check for admin approval
-$sql = "SELECT id, name, price, description, image FROM newproducts WHERE Admin = 'Disapproved'";
-$result = $conn->query($sql);
+// Get the username from the query parameter
+$username = isset($_GET['username']) ? $_GET['username'] : '';
+
+// Construct the table name
+$tableName = "table_" . preg_replace('/[^A-Za-z0-9_]/', '_', strtolower($username));
+
+// Modify the query to check for admin approval based on the provided username
+$sql = "SELECT id, name, price, description, image FROM $tableName WHERE Admin = 'Disapproved'";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $products = [];
 if ($result->num_rows > 0) {
@@ -26,5 +34,6 @@ if ($result->num_rows > 0) {
     echo json_encode([]);
 }
 
+$stmt->close();
 $conn->close();
 ?>

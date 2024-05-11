@@ -12,24 +12,33 @@
     <div class="container">
         <div class="product-details">
             <div class="product-image">
-                <img src="Images/potato.jpg" alt="Product Image">
+                <img id="productImage" src="" alt="Product Image">
             </div>
             <div class="product-info">
-                <h2>Potato</h2>
-                <p>Fresh potatoes of Terai region at very reasonable price. Save upto 30%, purchase it now.
-
-                    It is a long established fact that a reader will be distracted by the readable content of a page
-                    when looking at its layout.
-                    The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                    opposed to using 'Content here,
-
-                </p>
-                <p>Price: $100</p>
-                <p>Seller: XYZ Store</p>
+                <h2 id="productName"></h2>
+                <p id="productDescription"></p>
+                <p id="productPrice"></p>
                 <a href="#" class="add-to-cart">Add to Cart</a>
             </div>
         </div>
     </div>
+    <script src="show.js"></script>
+    <script>
+        window.onload = function () {
+            // Read query parameters from the URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var productName = urlParams.get('name');
+            var productPrice = urlParams.get('price');
+            var productDescription = urlParams.get('description');
+            var productImage = urlParams.get('image');
+
+            // Update HTML elements with the product details
+            document.getElementById("productName").textContent = productName;
+            document.getElementById("productPrice").textContent = "Price: " + productPrice;
+            document.getElementById("productDescription").textContent = productDescription;
+            document.getElementById("productImage").src = productImage;
+        };
+    </script>
 </body>
 
 </html>

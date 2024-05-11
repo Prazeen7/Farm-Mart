@@ -12,11 +12,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Retrieve username from query parameter and sanitize it
-$username = isset($_GET['username']) ? $conn->real_escape_string($_GET['username']) : '';
+// Retrieve product ID from query parameter and sanitize it
+$productId = isset($_GET['productId']) ? $conn->real_escape_string($_GET['productId']) : '';
 
-// Check if username is not empty
-if (!empty($username)) {
+// Check if product ID is not empty
+if (!empty($productId)) {
     // Get all table names that match the pattern "table_"
     $tablesQuery = "SHOW TABLES LIKE 'table_%'";
     $tablesResult = $conn->query($tablesQuery);
@@ -27,27 +27,27 @@ if (!empty($username)) {
         // Iterate over each table
         while ($tableRow = $tablesResult->fetch_row()) {
             $tableName = $tableRow[0];
-            
-            // Fetch products from the table
-            $sql = "SELECT id, name, price, description, image FROM $tableName WHERE Admin = 'Approved'";
+
+            // Fetch product details from the table based on product ID
+            $sql = "SELECT name, price, description, image FROM $tableName WHERE id = $productId";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                // Fetch products from this table and append them to the products array
+                // Fetch product details and append them to the products array
                 while ($row = $result->fetch_assoc()) {
                     $products[] = $row;
                 }
             }
         }
 
-        // Output the products as JSON
+        // Output the product details as JSON
         echo json_encode($products);
     } else {
         // No matching tables found, return an empty array
         echo json_encode([]);
     }
 } else {
-    // If username is empty, return an empty array
+    // If product ID is empty, return an empty array
     echo json_encode([]);
 }
 

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const backButton = document.querySelector('.back-button');
 
     function navigateToIndex() {
@@ -10,7 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function login() {
     // Get form data
+    // Get the username value
     var username = document.getElementsByName("username")[0].value;
+
+    // Store the username value in localStorage
+    localStorage.setItem('username', username);
+
     var password = document.getElementsByName("password")[0].value;
 
     // Create AJAX request
@@ -19,7 +24,7 @@ function login() {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // Handle response
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 // Response received successfully

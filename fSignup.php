@@ -51,12 +51,14 @@ if ($stmt->execute()) {
         name VARCHAR(255) NOT NULL,
         price DECIMAL(10, 2) NOT NULL,
         description LONGTEXT,
-        image VARCHAR(255)
+        image VARCHAR(255),
+        fresh TINYINT(4) NOT NULL,
+        Admin VARCHAR(50) NOT NULL DEFAULT 'Disapproved'
     )";
+    
 
     // Attempt to create a new table for the user
     if ($conn->query($createTableSQL) === TRUE) {
-        echo "User table created successfully";
     } else {
         echo "Error creating user table: ";
     }

@@ -5,11 +5,15 @@ window.onload = function() {
     // Check if username is not empty
     if (username) {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "show.php?username=" + encodeURIComponent(username), true);
+        xhr.open("GET", "freshProducts.php?username=" + encodeURIComponent(username), true);
         xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var products = JSON.parse(xhr.responseText);
-                displayProducts(products);
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var products = JSON.parse(xhr.responseText);
+                    displayProducts(products);
+                } else {
+                    console.error("Failed to fetch products: " + xhr.status);
+                }
             }
         };
         xhr.send();
@@ -35,25 +39,10 @@ function displayProducts(products) {
                 <h3>${product.name}</h3>
                 <p>Rs. ${product.price}</p>
                 <button>Add to cart</button>
-                <button class="details-btn" data-id="${product.id}">See Details</button> <!-- Add data-id attribute -->
+                <button class="details-btn">See Details</button>
             </div>
         `;
     });
-
-    // Add event listener to each "See Details" button
-    var detailButtons = document.querySelectorAll('.details-btn');
-    detailButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var productId = this.getAttribute('data-id');
-            fetchProductDetails(productId);
-        });
-    });
 }
 
-function fetchProductDetails(productId) {
-    // Perform AJAX request to fetch product details based on productId
-    // Replace the below code with your AJAX request to fetch product details
-    console.log("Fetching details for product with ID:", productId);
-    // Example: Fetch product details using another PHP script and display them
-}
 

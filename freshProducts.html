@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Mart</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="show.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="Images/Logo5.png" alt="Farm Mart Logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" data-page="home">Home</a></li>
+                <li><a href="#" class="active" data-page="freshProducts">Fresh Products</a></li>
+                <li><a href="#" data-page="farmer">Become a Farmer</a></li>
+                <li><a href="#" data-page="aboutUs">About Us</a></li>
+                <li><a href="#" data-page="inquire">Inquire</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-actions">
+            <form class="search-form" action="#" method="GET">
+                <input type="text" name="search" placeholder="Search..." required>
+                <button type="submit">Search</button>
+            </form>
+            <box-icon name='cart' color='#0c9a42' class="cart-icon"></box-icon>
+            <div class="login-signup">
+                <button id="loginbtn">Login</button>
+                <button id="signbtn">Sign Up</button>
+            </div>
+        </div>
+    </header>
+<body>
+    <div class="main-content">
+    <h2 class="new-products">Fresh from the farm</h2>
+    <div class="product-list" id="productList">
+        <!-- Products will be inserted here by JavaScript -->
+    </div>
+</div>
+
+    <script src="index.js"></script>
+    <script src="freshProducts.js"></script>
+</body>
+</html>

@@ -32,6 +32,7 @@ function signup() {
             } else {
                 alert("An error occurred while processing your request.");
             }
+            window.location.href = "fLogin.html";
         }
     };
 

@@ -29,7 +29,7 @@ if (!empty($username)) {
             $tableName = $tableRow[0];
             
             // Fetch products from the table
-            $sql = "SELECT id, name, price, description, image FROM $tableName WHERE Admin = 'Approved'";
+            $sql = "SELECT id, name, price, description, image FROM $tableName WHERE Admin = 'Approved' AND fresh=1";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {

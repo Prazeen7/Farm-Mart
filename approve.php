@@ -13,9 +13,13 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $productId = $_POST['productId']; // assuming a 'productId' is sent with the request
+    $productId = $_POST['productId'];
+    $username = $_POST['username']; 
 
-    $sql = "UPDATE newproducts SET Admin = 'Approved' WHERE id = ?";
+    // Construct the table name
+    $tableName = "table_" . preg_replace('/[^A-Za-z0-9_]/', '_', strtolower($username));
+
+    $sql = "UPDATE $tableName SET Admin = 'Approved' WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $productId);
     if ($stmt->execute()) {

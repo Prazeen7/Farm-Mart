@@ -36,7 +36,11 @@
                 <label for="productImage">Product Image:</label>
                 <input type="file" id="productImage" name="productImage" accept="image/*" required>
             </div>
-            <button type="button" class= "sell-btn" onclick="submitProduct()">Sell</button>
+            <div class="form-group">
+                <label for="productStatus" style="display: inline-block; vertical-align: middle;">Fresh Product:</label>
+                <input type="checkbox" id="productStatus" name="productStatus" style="display: inline-block; vertical-align: middle; width: 20px; height: 20px;">
+            </div>
+            <button type="button" class="sell-btn" onclick="submitProduct()">Sell</button>
         </form>
         
         

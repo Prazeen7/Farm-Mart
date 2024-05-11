@@ -34,26 +34,9 @@ function displayProducts(products) {
                 <img src="${product.image}" alt="${product.name}">
                 <h3>${product.name}</h3>
                 <p>Rs. ${product.price}</p>
-                <button>Add to cart</button>
-                <button class="details-btn" data-id="${product.id}">See Details</button> <!-- Add data-id attribute -->
+                <button style="background-color: red; color: white;">Remove Listing</button>
+                <button class="details-btn">See Details</button>
             </div>
         `;
     });
-
-    // Add event listener to each "See Details" button
-    var detailButtons = document.querySelectorAll('.details-btn');
-    detailButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var productId = this.getAttribute('data-id');
-            fetchProductDetails(productId);
-        });
-    });
 }
-
-function fetchProductDetails(productId) {
-    // Perform AJAX request to fetch product details based on productId
-    // Replace the below code with your AJAX request to fetch product details
-    console.log("Fetching details for product with ID:", productId);
-    // Example: Fetch product details using another PHP script and display them
-}
-

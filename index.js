@@ -2,11 +2,11 @@
   const signbtn = document.getElementById('signbtn');
   const potato = document.getElementById('potato-product');
 
-  // Add event listeners to both buttons
-  potato.addEventListener('click', function () {
-    // Call the changePage function with the page parameter
-    changePage('pdetails');
-  });
+  // // Add event listeners to both buttons
+  // potato.addEventListener('click', function () {
+  //   // Call the changePage function with the page parameter
+  //   changePage('pdetails');
+  // });
 
   function login() {
     window.location.href = 'Login.html';
@@ -68,6 +68,8 @@ function changePage(page) {
         var page = this.getAttribute('data-page'); // Get the data-page attribute value\
         if (page === 'home') {
             window.location.href = 'index.html';
+        } else if(page == 'freshProducts'){
+          window.location.href = 'freshProducts.html';
         }
         else {
             changePage(page); // Call the function to load the corresponding page
@@ -75,7 +77,5 @@ function changePage(page) {
     });
   });
 
-console.log('DOM fully loaded and parsed');
-console.log(products); // Check what products are being loaded
 
 

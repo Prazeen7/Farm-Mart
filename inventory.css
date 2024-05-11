@@ -58,11 +58,6 @@ nav ul li a:hover {
     color: #0c9a42;
 }
 
-.user-actions {
-    display: flex;
-    align-items: center;
-}
-
 #logout {
     width: 30px;
     height: 30px;
@@ -73,73 +68,27 @@ nav ul li a:hover {
 #logout:hover {
     transform: scale(1.1);
 }
-body, html {
-    height: 100%;
-    margin: 0;
+
+.product img {
+    width: 160px;
+    height: 160px;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #f4f4f4;
-}
-
-.cards-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100% - 50px); /* Adjust height taking header height into account */
-    gap: 20px;
-}
-
-.card {
-    width: 300px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    border-radius: 8px;
-    background-color: white;
+.product {
+    margin: 20px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 5px;
+    width: 200px;
     text-align: center;
+    
 }
 
-.icon-container img {
-    width: 80px; /* Adjust size as necessary */
-    height: 80px;
-    margin-bottom: 20px;
-}
-
-.btn {
+.product-list{
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.btn img {
-    width: 24px;
-    height: 24px;
-}
-
-.logo img, .login-signup img {
-    height: 50px;
-}
-
-h2 {
-    text-align: center;
-    margin-top: 106px;
-    margin-bottom: -156px;
-    color: #333;
-    font-size: 48px;
-}
-
-a{
-    text-decoration: none;
-    color: white;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    align-content: stretch;
 }
