@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2024 at 11:40 AM
+-- Generation Time: May 11, 2024 at 05:57 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -96,11 +96,31 @@ INSERT INTO `newproducts` (`id`, `name`, `price`, `description`, `image`, `fresh
 --
 
 CREATE TABLE `products` (
-  `id` int(50) NOT NULL,
-  `price` int(50) NOT NULL,
-  `amount` int(50) NOT NULL,
-  `fresh` tinyint(1) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `description` longtext DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `fresh` tinyint(4) NOT NULL,
+  `Admin` varchar(50) NOT NULL DEFAULT 'Disapproved'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `price`, `description`, `image`, `fresh`, `Admin`) VALUES
+(3, 'Potato', 75.00, '', 'Images/potato.jpg', 1, 'Approved'),
+(4, 'Onion', 45.00, 'Onion is dark red', 'Images/onion.jpg', 1, 'Approved'),
+(5, 'Rice', 250.00, 'Rice is the secret of Nepali\'s Power', 'Images/Rice.jpg', 1, 'Approved'),
+(6, 'Broccoli', 50.00, 'Dal Bhat Power 24 hr ', 'Images/Broccoli.jpg', 1, 'Approved'),
+(7, 'Cilantro', 95.00, 'Dhaniyaaaaaaaaaaaa', 'Images/Cilantro.jpg', 1, 'Approved'),
+(8, 'Beetroot', 500.00, 'Beetrooiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Beetroot.jpg', 1, 'Approved'),
+(9, 'Fenugreek', 10.00, 'Fenugreekiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Fenugreek.jpg', 1, 'Approved'),
+(10, 'Lentil', 1000.00, 'Lentiliyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/lentil.jpg', 1, 'Approved'),
+(11, 'Lady Finger', 75.00, 'Bhendiii', 'Images/ladyFinger.jpg', 1, 'Approved'),
+(12, 'Pumpkin', 750.00, 'Pimkinyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Pumpkin.jpg', 0, 'Approved'),
+(13, 'Tomato ', 35.00, 'Tamatar', 'Images/Tomato.jpeg', 1, 'Approved');
 
 -- --------------------------------------------------------
 
@@ -123,8 +143,15 @@ CREATE TABLE `table_prajin_gmail_com` (
 --
 
 INSERT INTO `table_prajin_gmail_com` (`id`, `name`, `price`, `description`, `image`, `fresh`, `Admin`) VALUES
-(1, 'Allu', 75.00, 'asda', 'Images/1000_F_263012223_ac8g7Ref47RcsrKOEJfp8VrD4QkhMmQn.jpg', 0, 'Approved'),
-(2, 'Pyaj', 5.00, '', 'Images/lms_simplified.webp', 1, 'Approved');
+(3, 'Rice', 250.00, 'Rice is the secret of Nepali\'s Power', 'Images/Rice.jpg', 1, 'Approved'),
+(4, 'Broccoli', 50.00, 'Dal Bhat Power 24 hr ', 'Images/Broccoli.jpg', 1, 'Approved'),
+(5, 'Cilantro', 95.00, 'Dhaniyaaaaaaaaaaaa', 'Images/Cilantro.jpg', 1, 'Approved'),
+(6, 'Beetroot', 500.00, 'Beetrooiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Beetroot.jpg', 1, 'Approved'),
+(7, 'Fenugreek', 10.00, 'Fenugreekiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Fenugreek.jpg', 1, 'Approved'),
+(8, 'Lentil', 1000.00, 'Lentiliyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/lentil.jpg', 1, 'Approved'),
+(9, 'Lady Finger', 75.00, 'Bhendiii', 'Images/ladyFinger.jpg', 1, 'Approved'),
+(10, 'Pumpkin', 750.00, 'Pimkinyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Pumpkin.jpg', 0, 'Approved'),
+(11, 'Tomato ', 35.00, 'Tamatar', 'Images/Tomato.jpeg', 1, 'Approved');
 
 -- --------------------------------------------------------
 
@@ -147,7 +174,8 @@ CREATE TABLE `table_samika_gmail_com` (
 --
 
 INSERT INTO `table_samika_gmail_com` (`id`, `name`, `price`, `description`, `image`, `fresh`, `Admin`) VALUES
-(1, 'Potato', 75.00, '', 'Images/potato.jpg', 1, 'Approved');
+(1, 'Potato', 75.00, '', 'Images/potato.jpg', 1, 'Approved'),
+(2, 'Onion', 45.00, 'Onion is dark red', 'Images/onion.jpg', 1, 'Approved');
 
 -- --------------------------------------------------------
 
@@ -201,7 +229,7 @@ ALTER TABLE `newproducts`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD UNIQUE KEY `id` (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `table_prajin_gmail_com`
@@ -233,16 +261,22 @@ ALTER TABLE `newproducts`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `table_prajin_gmail_com`
 --
 ALTER TABLE `table_prajin_gmail_com`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `table_samika_gmail_com`
 --
 ALTER TABLE `table_samika_gmail_com`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

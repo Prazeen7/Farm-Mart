@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $productPrice = (int)$_POST["productPrice"];
     $productDescription = $_POST["productDescription"];
     $productImage = $_FILES["productImage"];
-    $productStatus = isset($_POST["productStatus"]) ? 1 : 0; // 1 if checked, 0 if unchecked
+    $productStatus = isset($_POST["productStatus"]) ? ($_POST["productStatus"] == 1 ? 1 : 0) : 0; // Convert to integer, 1 if checked, 0 if unchecked
     $username = isset($_POST["username"]) ? $_POST["username"] : '';
 
     // Handle file upload
@@ -70,4 +70,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "No data submitted.";
 }
+
 ?>

@@ -17,6 +17,8 @@ function submitProduct() {
     formData.append("productPrice", document.getElementsByName("productPrice")[0].value);
     formData.append("productDescription", document.getElementsByName("productDescription")[0].value);
     formData.append("productImage", document.getElementsByName("productImage")[0].files[0]);
+    
+    // Check if the checkbox is checked
     var productStatus = document.getElementById("productStatus").checked ? 1 : 0;
     formData.append("productStatus", productStatus);
 
@@ -31,8 +33,8 @@ function submitProduct() {
                 // Response received successfully
                 alert(xhr.responseText);  // Assuming the PHP script echoes a message on success/failure
                 if (xhr.responseText.includes("successfully")) {
-                    // Product added successfully, handle as needed
-                    console.log("Product added successfully");
+                    // Product added successfully, clear the form
+                    document.getElementById("productForm").reset();
                 } else {
                     // Handle failure
                     console.error("Failed to add product: " + xhr.responseText);

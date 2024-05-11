@@ -27,7 +27,13 @@ function displayProductDetails(product) {
     // Update the HTML content with the product details
     document.getElementById("name").innerText = product.name;
     document.getElementById("description").innerText = product.description;
-    document.getElementById("price").innerText = "Price: $" + product.price;
+    document.getElementById("price").innerText = "Price: RS. " + product.price;
     document.querySelector(".product-image img").src = product.image;
     document.querySelector(".product-image img").alt = product.name;
 }
+
+document.getElementById('logoLink').addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent default behavior of link
+    history.back(); // Go back one step in the browser history
+});
+
