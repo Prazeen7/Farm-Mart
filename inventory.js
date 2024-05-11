@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
     // Retrieve the username from localStorage
     var username = localStorage.getItem('username');
 
@@ -18,6 +18,8 @@ window.onload = function() {
     }
 };
 
+var username = localStorage.getItem('username');
+
 function displayProducts(products) {
     const productList = document.getElementById("productList");
     // Clear previous products
@@ -28,15 +30,39 @@ function displayProducts(products) {
         return; // Exit the function if no products are available
     }
 
-    products.forEach(function(product) {
+    products.forEach(function (product) {
         productList.innerHTML += `
             <div class="product">
                 <img src="${product.image}" alt="${product.name}">
                 <h3>${product.name}</h3>
                 <p>Rs. ${product.price}</p>
-                <button style="background-color: red; color: white;">Remove Listing</button>
-                <button class="details-btn">See Details</button>
+                <button style="background-color: red; color: white;" class='remove-list' data-id="${product.id}" data-name="${product.name}" data-price="${product.price}" data-image="${product.image}">Remove Listing</button>
             </div>
         `;
     });
+    
+    var removeButtons = document.querySelectorAll('.remove-list');
+    removeButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var productId = this.getAttribute('data-id');
+            var productName = this.getAttribute('data-name');
+            var productPrice = this.getAttribute('data-price');
+            var productImage = this.getAttribute('data-image');
+            removeProduct(productId, productName, productPrice, productImage, username);
+        });
+    });
+    
+}
+
+function removeProduct(productId, productName, productPrice, productImage, username) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "remove.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            alert(xhr.responseText);
+            location.reload();
+        }
+    };
+    xhr.send("productId=" + productId + "&productName=" + encodeURIComponent(productName) + "&productPrice=" + productPrice + "&productImage=" + encodeURIComponent(productImage) + "&username=" + encodeURIComponent(username));
 }
