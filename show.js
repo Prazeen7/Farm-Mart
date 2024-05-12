@@ -3,7 +3,6 @@ window.onload = function () {
     var username = localStorage.getItem('username');
 
     // Check if username is not empty
-    if (username) {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "show.php?username=" + encodeURIComponent(username), true);
         xhr.onreadystatechange = function () {
@@ -13,9 +12,6 @@ window.onload = function () {
             }
         };
         xhr.send();
-    } else {
-        console.error("Username not found in localStorage");
-    }
 };
 
 function displayProducts(products) {
