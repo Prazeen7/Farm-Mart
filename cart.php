@@ -70,8 +70,8 @@
             }
 
             // Fetch cart data for the logged-in user with status 1
-            $userId = 1; // Replace with the user's ID, or fetch it from the session
-            $sql = "SELECT products.name, products.price FROM cart JOIN products ON cart.productId = products.id WHERE cart.userId = $userId AND cart.status = 1";
+            $userId = "samika@gmail.com"; // Replace with the user's email, or fetch it from the session
+            $sql = "SELECT products.name, products.price FROM cart JOIN products ON cart.productId = products.id WHERE cart.userEmail = '$userId' AND cart.status = 1";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -87,7 +87,7 @@
 
         </tbody>
     </table>
-    <button><a href="checkout.php" class="checkout-btn">Checkout</a> </button>
+    <button><a href="checkout.php" class="checkout-btn">Checkout</a></button>
 </div>
 
 </body>
