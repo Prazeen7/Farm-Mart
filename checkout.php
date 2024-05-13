@@ -50,18 +50,18 @@
 
             // Fetch cart data for the logged-in user with status 1
             $userId = 1; // Replace with the user's ID, or fetch it from the session
-            $sql = "SELECT products.name, products.price FROM cart JOIN products ON cart.productId = products.id WHERE cart.userId = $userId AND cart.status = 1";
+            $sql = "SELECT products.name, products.price FROM cart JOIN products ON cart.productId = products.id WHERE cart.userEmail = 'samika@gmail.com' AND cart.status = 1";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 echo "<ul>";
                 $totalAmount = 0;
                 while ($row = $result->fetch_assoc()) {
-                    echo "<li>" . $row["name"] . " - $" . $row["price"] . "</li>";
+                    echo "<li>" . $row["name"] . " - Rs: " . $row["price"] . "</li>";
                     $totalAmount += $row["price"];
                 }
                 echo "</ul>";
-                echo "<p><strong>Total Amount: $" . $totalAmount . "</strong></p>";
+                echo "<p><strong>Total Amount: Rs: " . $totalAmount . "</strong></p>";
             } else {
                 echo "<p>No items in the cart.</p>";
             }
