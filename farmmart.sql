@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2024 at 04:01 PM
+-- Generation Time: May 13, 2024 at 10:28 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,11 +28,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cart` (
-  `email` varchar(50) NOT NULL,
-  `id` int(11) NOT NULL,
-  `price` int(11) NOT NULL,
-  `amount` int(11) NOT NULL
+  `productId` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `userEmail` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`productId`, `status`, `userEmail`) VALUES
+(4, 1, 'samika@gmail.com'),
+(3, 1, 'samika@gmail.com'),
+(5, 1, 'samika@gmail.com'),
+(6, 1, 'samika@gmail.com'),
+(4, 1, 'samika@gmail.com'),
+(4, 1, 'samika@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -52,9 +63,10 @@ CREATE TABLE `farmer` (
 --
 
 INSERT INTO `farmer` (`name`, `email`, `password`, `mode`) VALUES
+('Anu Singh', 'anusingh@gmail.com', 'anu123#', 'F'),
 ('Ashok Dhungana ', 'ashok@gmail.com', '753', 'F'),
 ('Prajin Singh', 'prajin@gmail.com', '12345', 'F'),
-('Samika Bhandari ', 'samika@gmail.com', '54321', 'F');
+('Samika Bhandari ', 'samika@gmail.com', '456789', 'F');
 
 -- --------------------------------------------------------
 
@@ -68,23 +80,26 @@ CREATE TABLE `newproducts` (
   `price` int(52) NOT NULL,
   `description` longtext NOT NULL,
   `image` longtext NOT NULL,
-  `Admin` text NOT NULL DEFAULT 'Disapproved'
+  `fresh` tinyint(50) NOT NULL,
+  `Admin` varchar(50) NOT NULL DEFAULT 'Disapproved'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `newproducts`
 --
 
-INSERT INTO `newproducts` (`id`, `name`, `price`, `description`, `image`, `Admin`) VALUES
-(1, 'Alooo', 75, 'Alooo LEllo', 'Images/1000_F_263012223_ac8g7Ref47RcsrKOEJfp8VrD4QkhMmQn.jpg', 'Approved'),
-(2, 'Tamatar', 85, 'dfksdhfjsdhf', 'Images/istockphoto-939108006-612x612.jpg', 'Approved'),
-(3, 'Pyaj', 45, '', 'Images/ec1ab766e91dae725febee6cfdcde86c.png', 'Approved'),
-(4, 'Brabim', 5, 'Brabim is Handsome', 'Images/Untitled.png', 'Approved'),
-(5, 'Lassun', 15, 'kljdjflkjsdflkjs', 'Images/management.png', 'Approved'),
-(6, 'Kera', 15, 'kljdjflkjsdflkjs', 'Images/unity.png', 'Approved'),
-(7, 'Apple', 15, 'kljdjflkjsdflkjs', 'Images/java-script.png', 'Approved'),
-(8, 'Gobi', 80, 'Gobi is Allooo', 'Images/user (1).png', 'Approved'),
-(9, 'Guava', 45, 'Guavaaaa is Pink', 'Images/python.png', 'Approved');
+INSERT INTO `newproducts` (`id`, `name`, `price`, `description`, `image`, `fresh`, `Admin`) VALUES
+(1, 'Alooo', 75, 'Alooo LEllo', 'Images/1000_F_263012223_ac8g7Ref47RcsrKOEJfp8VrD4QkhMmQn.jpg', 0, 'Approved'),
+(2, 'Tamatar', 85, 'dfksdhfjsdhf', 'Images/istockphoto-939108006-612x612.jpg', 0, 'Disapproved'),
+(3, 'Pyaj', 45, '', 'Images/ec1ab766e91dae725febee6cfdcde86c.png', 0, 'Disapproved'),
+(4, 'Brabim', 5, 'Brabim is Handsome', 'Images/Untitled.png', 0, 'Disapproved'),
+(5, 'Lassun', 15, 'kljdjflkjsdflkjs', 'Images/management.png', 0, 'Disapproved'),
+(6, 'Kera', 15, 'kljdjflkjsdflkjs', 'Images/unity.png', 0, 'Disapproved'),
+(7, 'Apple', 15, 'kljdjflkjsdflkjs', 'Images/java-script.png', 0, 'Disapproved'),
+(8, 'Gobi', 80, 'Gobi is Allooo', 'Images/user (1).png', 0, 'Disapproved'),
+(9, 'Guava', 45, 'Guavaaaa is Pink', 'Images/python.png', 0, 'Disapproved'),
+(10, 'Kerau', 85, 'klasdjlkasdja', 'Images/database.png', 0, 'Disapproved'),
+(21, 'Allu', 75, '', 'Images/lms_simplified.webp', 1, 'Approved');
 
 -- --------------------------------------------------------
 
@@ -93,11 +108,55 @@ INSERT INTO `newproducts` (`id`, `name`, `price`, `description`, `image`, `Admin
 --
 
 CREATE TABLE `products` (
-  `id` int(50) NOT NULL,
-  `price` int(50) NOT NULL,
-  `amount` int(50) NOT NULL,
-  `fresh` tinyint(1) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `description` longtext DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `fresh` tinyint(4) NOT NULL,
+  `Admin` varchar(50) NOT NULL DEFAULT 'Disapproved'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `price`, `description`, `image`, `fresh`, `Admin`) VALUES
+(3, 'Potato', 75.00, 'we present our freshly harvested potatoes. Grown with care and expertise, these potatoes are bursting with flavor and nutrients. With their earthy taste and versatile nature, they are perfect for countless recipes.', 'Images/potato.jpg', 1, 'Approved'),
+(4, 'Onion', 45.00, 'Grown with dedication and expertise, these onions are rich in flavor and nutrients. Their versatile taste and crisp texture make them a must-have ingredient for countless recipes. ', 'Images/onion.jpg', 1, 'Approved'),
+(5, 'Rice', 250.00, 'Cultivated with precision and care, our rice grains are of the highest quality, boasting a rich flavor and tender texture. Grown sustainably and harvested at peak maturity, our rice is a wholesome staple for any kitchen. ', 'Images/Rice.jpg', 1, 'Approved'),
+(6, 'Broccoli', 50.00, 'Grown with meticulous care and attention, our broccoli is bursting with vibrant color and crispness. Packed with essential nutrients like vitamins C and K, as well as fiber, this nutrient-dense vegetable is a delicious and healthy addition to any meal.', 'Images/Broccoli.jpg', 1, 'Approved'),
+(7, 'Cilantro', 95.00, 'Dhaniyaaaaaaaaaaaa', 'Images/Cilantro.jpg', 1, 'Approved'),
+(8, 'Beetroot', 500.00, 'Beetrooiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Beetroot.jpg', 1, 'Approved'),
+(9, 'Fenugreek', 10.00, 'Fenugreekiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Fenugreek.jpg', 1, 'Approved'),
+(10, 'Lentil', 1000.00, 'Lentiliyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/lentil.jpg', 1, 'Approved'),
+(11, 'Lady Finger', 75.00, 'Bhendiii', 'Images/ladyFinger.jpg', 1, 'Approved'),
+(12, 'Pumpkin', 750.00, 'Pimkinyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Pumpkin.jpg', 0, 'Approved'),
+(13, 'Tomato ', 35.00, 'Tamatar', 'Images/Tomato.jpeg', 1, 'Approved'),
+(15, 'Cucumber', 30.00, 'These cucumbers are meticulously tended to, ensuring optimal freshness and flavor. Grown with care, they boast a crisp texture and a delightful, subtly sweet taste that embodies the essence of farm-fresh produce.', 'Images/Screenshot 2024-05-12 232453.png', 1, 'Approved');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `table_anusingh_gmail_com`
+--
+
+CREATE TABLE `table_anusingh_gmail_com` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `description` longtext DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `fresh` tinyint(4) NOT NULL,
+  `Admin` varchar(50) NOT NULL DEFAULT 'Disapproved'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `table_anusingh_gmail_com`
+--
+
+INSERT INTO `table_anusingh_gmail_com` (`id`, `name`, `price`, `description`, `image`, `fresh`, `Admin`) VALUES
+(2, 'Cucumber', 30.00, 'These cucumbers are meticulously tended to, ensuring optimal freshness and flavor. Grown with care, they boast a crisp texture and a delightful, subtly sweet taste that embodies the essence of farm-fresh produce.', 'Images/Screenshot 2024-05-12 232453.png', 1, 'Approved');
 
 -- --------------------------------------------------------
 
@@ -110,8 +169,48 @@ CREATE TABLE `table_prajin_gmail_com` (
   `name` varchar(255) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `description` longtext DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL
+  `image` varchar(255) DEFAULT NULL,
+  `fresh` tinyint(4) NOT NULL,
+  `Admin` varchar(50) NOT NULL DEFAULT 'Disapproved'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `table_prajin_gmail_com`
+--
+
+INSERT INTO `table_prajin_gmail_com` (`id`, `name`, `price`, `description`, `image`, `fresh`, `Admin`) VALUES
+(3, 'Rice', 250.00, 'Rice is the secret of Nepali\'s Power', 'Images/Rice.jpg', 1, 'Approved'),
+(4, 'Broccoli', 50.00, 'Dal Bhat Power 24 hr ', 'Images/Broccoli.jpg', 1, 'Approved'),
+(5, 'Cilantro', 95.00, 'Dhaniyaaaaaaaaaaaa', 'Images/Cilantro.jpg', 1, 'Approved'),
+(6, 'Beetroot', 500.00, 'Beetrooiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Beetroot.jpg', 1, 'Approved'),
+(7, 'Fenugreek', 10.00, 'Fenugreekiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Fenugreek.jpg', 1, 'Approved'),
+(8, 'Lentil', 1000.00, 'Lentiliyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/lentil.jpg', 1, 'Approved'),
+(9, 'Lady Finger', 75.00, 'Bhendiii', 'Images/ladyFinger.jpg', 1, 'Approved'),
+(10, 'Pumpkin', 750.00, 'Pimkinyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Pumpkin.jpg', 0, 'Approved'),
+(11, 'Tomato ', 35.00, 'Tamatar', 'Images/Tomato.jpeg', 1, 'Approved');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `table_samika_gmail_com`
+--
+
+CREATE TABLE `table_samika_gmail_com` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `description` longtext DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `fresh` tinyint(4) NOT NULL,
+  `Admin` varchar(50) NOT NULL DEFAULT 'Disapproved'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `table_samika_gmail_com`
+--
+
+INSERT INTO `table_samika_gmail_com` (`id`, `name`, `price`, `description`, `image`, `fresh`, `Admin`) VALUES
+(2, 'Onion', 45.00, 'Onion is dark red', 'Images/onion.jpg', 1, 'Approved');
 
 -- --------------------------------------------------------
 
@@ -143,13 +242,6 @@ INSERT INTO `user` (`name`, `email`, `password`, `mode`) VALUES
 --
 
 --
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`email`),
-  ADD UNIQUE KEY `id` (`id`);
-
---
 -- Indexes for table `farmer`
 --
 ALTER TABLE `farmer`
@@ -165,12 +257,24 @@ ALTER TABLE `newproducts`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD UNIQUE KEY `id` (`id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `table_anusingh_gmail_com`
+--
+ALTER TABLE `table_anusingh_gmail_com`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `table_prajin_gmail_com`
 --
 ALTER TABLE `table_prajin_gmail_com`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `table_samika_gmail_com`
+--
+ALTER TABLE `table_samika_gmail_com`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -188,13 +292,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `newproducts`
 --
 ALTER TABLE `newproducts`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `table_anusingh_gmail_com`
+--
+ALTER TABLE `table_anusingh_gmail_com`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `table_prajin_gmail_com`
 --
 ALTER TABLE `table_prajin_gmail_com`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `table_samika_gmail_com`
+--
+ALTER TABLE `table_samika_gmail_com`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
