@@ -10,31 +10,50 @@ if(isset($_POST['product_id']) && !empty($_POST['product_id'])) {
     $password = ""; 
     $dbname = "farmmart"; // Corrected variable name
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    try {
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        // Check connection
+        if ($conn->connect_error) {
+            throw new Exception("Connection failed: " . $conn->connect_error);
+        }
+
+        // Assume user email is retrieved from session or somewhere else in your application
+        $userEmail = "samika@gmail.com"; // Replace this with the actual user's email
+
+        // Check if the product is already in the user's cart
+        $checkStmt = $conn->prepare("SELECT * FROM cart WHERE userEmail = ? AND productId = ?");
+        if (!$checkStmt) {
+            throw new Exception("Prepare statement error: " . $conn->error);
+        }
+        $checkStmt->bind_param("si", $userEmail, $productId);
+        if (!$checkStmt->execute()) {
+            throw new Exception("Execute statement error: " . $checkStmt->error);
+        }
+        $result = $checkStmt->get_result();
+
+    
+            // Prepare SQL statement to insert into cart table
+            $stmt = $conn->prepare("INSERT INTO cart (userEmail, productId, status) VALUES (?, ?, 1)");
+            if (!$stmt) {
+                throw new Exception("Prepare statement error: " . $conn->error);
+            }
+            $stmt->bind_param("si", $userEmail, $productId); // Changed 'ii' to 'si' to match the types of parameters
+            if (!$stmt->execute()) {
+                throw new Exception("Execute statement error: " . $stmt->error);
+            }
+
+            echo "Product added to cart successfully!";
+        
+
+        // Close statements and connection
+        $checkStmt->close();
+        $stmt->close();
+        $conn->close();
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
     }
-
-    // Assume user ID is 1 for demonstration purposes, you should fetch it from the session
-    $userId = 1;
-
-    // Prepare SQL statement to insert into cart table
-    $stmt = $conn->prepare("INSERT INTO cart (userId, productId, status) VALUES (?, ?, 1)");
-    $stmt->bind_param("ii", $userId, $productId);
-
-    // Execute the statement
-    if ($stmt->execute() === TRUE) {
-        echo "Product added to cart successfully!";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    // Close statement and connection
-    $stmt->close();
-    $conn->close();
 } else {
     // If product ID is not provided in the request, display an error message
     echo "Error: Product ID not provided.";
