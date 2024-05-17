@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2024 at 05:57 PM
+-- Generation Time: May 17, 2024 at 11:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,11 +28,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cart` (
-  `email` varchar(50) NOT NULL,
-  `id` int(11) NOT NULL,
-  `price` int(11) NOT NULL,
-  `amount` int(11) NOT NULL
+  `productId` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `userEmail` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`productId`, `status`, `userEmail`) VALUES
+(4, 1, 'samika@gmail.com'),
+(3, 1, 'samika@gmail.com'),
+(5, 1, 'samika@gmail.com'),
+(6, 1, 'samika@gmail.com'),
+(4, 1, 'samika@gmail.com'),
+(4, 1, 'samika@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -52,9 +63,31 @@ CREATE TABLE `farmer` (
 --
 
 INSERT INTO `farmer` (`name`, `email`, `password`, `mode`) VALUES
+('Anu Singh', 'anusingh@gmail.com', 'anu123#', 'F'),
 ('Ashok Dhungana ', 'ashok@gmail.com', '753', 'F'),
 ('Prajin Singh', 'prajin@gmail.com', '12345', 'F'),
 ('Samika Bhandari ', 'samika@gmail.com', '456789', 'F');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inquiry`
+--
+
+CREATE TABLE `inquiry` (
+  `id` int(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(52) NOT NULL,
+  `subject` text NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `inquiry`
+--
+
+INSERT INTO `inquiry` (`id`, `name`, `email`, `subject`, `message`) VALUES
+(5, 'Rajesh Hamal', 'rajesh@gmail.com', 'Rotten Vegetables ', 'I was delivered rotten vegetables');
 
 -- --------------------------------------------------------
 
@@ -110,17 +143,18 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `image`, `fresh`, `Admin`) VALUES
-(3, 'Potato', 75.00, '', 'Images/potato.jpg', 1, 'Approved'),
-(4, 'Onion', 45.00, 'Onion is dark red', 'Images/onion.jpg', 1, 'Approved'),
-(5, 'Rice', 250.00, 'Rice is the secret of Nepali\'s Power', 'Images/Rice.jpg', 1, 'Approved'),
-(6, 'Broccoli', 50.00, 'Dal Bhat Power 24 hr ', 'Images/Broccoli.jpg', 1, 'Approved'),
+(3, 'Potato', 75.00, 'we present our freshly harvested potatoes. Grown with care and expertise, these potatoes are bursting with flavor and nutrients. With their earthy taste and versatile nature, they are perfect for countless recipes.', 'Images/potato.jpg', 1, 'Approved'),
+(4, 'Onion', 45.00, 'Grown with dedication and expertise, these onions are rich in flavor and nutrients. Their versatile taste and crisp texture make them a must-have ingredient for countless recipes. ', 'Images/onion.jpg', 1, 'Approved'),
+(6, 'Broccoli', 50.00, 'Grown with meticulous care and attention, our broccoli is bursting with vibrant color and crispness. Packed with essential nutrients like vitamins C and K, as well as fiber, this nutrient-dense vegetable is a delicious and healthy addition to any meal.', 'Images/Broccoli.jpg', 1, 'Approved'),
 (7, 'Cilantro', 95.00, 'Dhaniyaaaaaaaaaaaa', 'Images/Cilantro.jpg', 1, 'Approved'),
 (8, 'Beetroot', 500.00, 'Beetrooiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Beetroot.jpg', 1, 'Approved'),
 (9, 'Fenugreek', 10.00, 'Fenugreekiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Fenugreek.jpg', 1, 'Approved'),
 (10, 'Lentil', 1000.00, 'Lentiliyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/lentil.jpg', 1, 'Approved'),
 (11, 'Lady Finger', 75.00, 'Bhendiii', 'Images/ladyFinger.jpg', 1, 'Approved'),
 (12, 'Pumpkin', 750.00, 'Pimkinyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Pumpkin.jpg', 0, 'Approved'),
-(13, 'Tomato ', 35.00, 'Tamatar', 'Images/Tomato.jpeg', 1, 'Approved');
+(13, 'Tomato ', 35.00, 'Tamatar', 'Images/Tomato.jpeg', 1, 'Approved'),
+(20, 'Carrot', 25.00, '', 'Images/carrots.jpg', 1, 'Approved'),
+(22, 'Carrot', 25.00, 'Carrot', 'Images/carrots.jpg', 0, 'Disapproved');
 
 -- --------------------------------------------------------
 
@@ -143,7 +177,6 @@ CREATE TABLE `table_prajin_gmail_com` (
 --
 
 INSERT INTO `table_prajin_gmail_com` (`id`, `name`, `price`, `description`, `image`, `fresh`, `Admin`) VALUES
-(3, 'Rice', 250.00, 'Rice is the secret of Nepali\'s Power', 'Images/Rice.jpg', 1, 'Approved'),
 (4, 'Broccoli', 50.00, 'Dal Bhat Power 24 hr ', 'Images/Broccoli.jpg', 1, 'Approved'),
 (5, 'Cilantro', 95.00, 'Dhaniyaaaaaaaaaaaa', 'Images/Cilantro.jpg', 1, 'Approved'),
 (6, 'Beetroot', 500.00, 'Beetrooiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Beetroot.jpg', 1, 'Approved'),
@@ -151,7 +184,8 @@ INSERT INTO `table_prajin_gmail_com` (`id`, `name`, `price`, `description`, `ima
 (8, 'Lentil', 1000.00, 'Lentiliyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/lentil.jpg', 1, 'Approved'),
 (9, 'Lady Finger', 75.00, 'Bhendiii', 'Images/ladyFinger.jpg', 1, 'Approved'),
 (10, 'Pumpkin', 750.00, 'Pimkinyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Images/Pumpkin.jpg', 0, 'Approved'),
-(11, 'Tomato ', 35.00, 'Tamatar', 'Images/Tomato.jpeg', 1, 'Approved');
+(11, 'Tomato ', 35.00, 'Tamatar', 'Images/Tomato.jpeg', 1, 'Approved'),
+(18, 'Carrot', 25.00, 'Carrot', 'Images/carrots.jpg', 0, 'Disapproved');
 
 -- --------------------------------------------------------
 
@@ -174,7 +208,6 @@ CREATE TABLE `table_samika_gmail_com` (
 --
 
 INSERT INTO `table_samika_gmail_com` (`id`, `name`, `price`, `description`, `image`, `fresh`, `Admin`) VALUES
-(1, 'Potato', 75.00, '', 'Images/potato.jpg', 1, 'Approved'),
 (2, 'Onion', 45.00, 'Onion is dark red', 'Images/onion.jpg', 1, 'Approved');
 
 -- --------------------------------------------------------
@@ -207,17 +240,16 @@ INSERT INTO `user` (`name`, `email`, `password`, `mode`) VALUES
 --
 
 --
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`email`),
-  ADD UNIQUE KEY `id` (`id`);
-
---
 -- Indexes for table `farmer`
 --
 ALTER TABLE `farmer`
   ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `inquiry`
+--
+ALTER TABLE `inquiry`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `newproducts`
@@ -255,6 +287,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `inquiry`
+--
+ALTER TABLE `inquiry`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `newproducts`
 --
 ALTER TABLE `newproducts`
@@ -264,13 +302,13 @@ ALTER TABLE `newproducts`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `table_prajin_gmail_com`
 --
 ALTER TABLE `table_prajin_gmail_com`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `table_samika_gmail_com`
