@@ -36,6 +36,7 @@ function displayProducts(products) {
                 <img src="${product.image}" alt="${product.name}">
                 <h3>${product.name}</h3>
                 <p>Rs. ${product.price}</p>
+                <p>Quantity: ${product.quantity}</p>
                 <button style="background-color: red; color: white;" class='remove-list' data-id="${product.id}" data-name="${product.name}" data-price="${product.price}" data-image="${product.image}">Remove Listing</button>
             </div>
         `;

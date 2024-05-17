@@ -21,7 +21,7 @@ if (!empty($username)) {
     $tableName = "table_" . preg_replace('/[^A-Za-z0-9_]/', '_', strtolower($username));
 
     // Modify the query to check for admin approval and match the username
-    $sql = "SELECT id, name, price, description, image FROM $tableName WHERE Admin = 'Approved'";
+    $sql = "SELECT id, name, price, description, image, quantity FROM $tableName WHERE Admin = 'Approved'";
     $result = $conn->query($sql);
 
     $products = [];

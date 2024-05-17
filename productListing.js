@@ -14,10 +14,11 @@ function submitProduct() {
     }
 
     // Append other form data to the FormData object
-    formData.append("productName", document.getElementsByName("productName")[0].value);
-    formData.append("productPrice", document.getElementsByName("productPrice")[0].value);
-    formData.append("productDescription", document.getElementsByName("productDescription")[0].value);
-    formData.append("productImage", document.getElementsByName("productImage")[0].files[0]);
+    formData.append("productName", document.getElementById("productName").value);
+    formData.append("productPrice", document.getElementById("productPrice").value);
+    formData.append("productDescription", document.getElementById("productDescription").value);
+    formData.append("productImage", document.getElementById("productImage").files[0]);
+    formData.append("productQuantity", document.getElementById("productQuantity").value);
     
     // Check if the checkbox is checked
     var productStatus = document.getElementById("productStatus").checked ? 1 : 0;
@@ -34,11 +35,11 @@ function submitProduct() {
                 // Response received successfully
                 alert(xhr.responseText); 
                 if (xhr.responseText.includes("successfully")) {
-
+                    // Reset the form if product added successfully
                     document.getElementById("productForm").reset();
                 } else {
                     // Handle failure
-                    console.error("Failed to add product: " );
+                    console.error("Failed to add product: " + xhr.responseText);
                 }
             } else {
                 // Error occurred

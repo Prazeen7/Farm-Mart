@@ -3,7 +3,7 @@ window.onload = function () {
 
     if (username) {
         fetchProducts(username);
-        fetchInquiries(username); // Call fetchInquiries to load inquiries
+        fetchInquiries(username); 
     } else {
         console.error("Username not found in localStorage");
     }
@@ -27,7 +27,11 @@ function fetchInquiries(username) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var inquiries = JSON.parse(xhr.responseText);
-            displayInquiries(inquiries, username); // Call displayInquiries with fetched inquiries
+            if (Array.isArray(inquiries)) {
+                displayInquiries(inquiries, username); // Call displayInquiries with fetched inquiries
+            } else {
+                console.error("Inquiries data is not an array:", inquiries);
+            }
         }
     };
     xhr.send();
@@ -55,6 +59,24 @@ function displayProducts(products, username) {
     });
 }
 
+function updateProductStatus(productId, productName, productPrice, productImage, username, action) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "approve.php", true); 
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            alert(xhr.responseText);
+            fetchProducts(username);
+        }
+    };
+    
+    // Construct the data to be sent based on the action
+    var requestData = `productId=${productId}&productName=${encodeURIComponent(productName)}&productPrice=${productPrice}&productImage=${encodeURIComponent(productImage)}&username=${encodeURIComponent(username)}&action=${action}`;
+    
+    xhr.send(requestData);
+}
+
+
 function displayInquiries(inquiries, username) {
     const inquiryTable = document.getElementById("inquiryTable").getElementsByTagName('tbody')[0];
     inquiryTable.innerHTML = '';
@@ -69,18 +91,18 @@ function displayInquiries(inquiries, username) {
 
     inquiries.forEach(function (inquiry, index) {
         const row = inquiryTable.insertRow();
-        row.insertCell().textContent = index+1;
+        row.insertCell().textContent = index + 1;
         row.insertCell().textContent = inquiry.name;
         row.insertCell().textContent = inquiry.email;
         row.insertCell().textContent = inquiry.subject;
         row.insertCell().textContent = inquiry.message;
-        
+
         // Add a delete button cell with red text
         const deleteCell = row.insertCell();
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
         deleteButton.style.color = 'red';
-        deleteButton.onclick = function() {
+        deleteButton.onclick = function () {
             deleteInquiry(inquiry.id, username);
         };
         deleteCell.appendChild(deleteButton);
@@ -99,6 +121,3 @@ function deleteInquiry(inquiryId, username) {
     };
     xhr.send("id=" + inquiryId);
 }
-
-
-
