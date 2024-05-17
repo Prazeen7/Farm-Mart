@@ -10,6 +10,7 @@ function submitProduct() {
         formData.append("username", username);
     } else {
         console.error("Username not found in localStorage");
+        return; // Exit the function if username is not found
     }
 
     // Append other form data to the FormData object
@@ -31,21 +32,21 @@ function submitProduct() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 // Response received successfully
-                alert(xhr.responseText);  // Assuming the PHP script echoes a message on success/failure
+                alert(xhr.responseText); 
                 if (xhr.responseText.includes("successfully")) {
-                    // Product added successfully, clear the form
+
                     document.getElementById("productForm").reset();
                 } else {
                     // Handle failure
-                    console.error("Failed to add product: " + xhr.responseText);
+                    console.error("Failed to add product: " );
                 }
             } else {
                 // Error occurred
-                alert("An error occurred while processing your request.");
+                alert("An error occurred while processing your request");
             }
         }
     };
 
     // Send form data
-    xhr.send(formData); // Use FormData to send files and data
+    xhr.send(formData);
 }

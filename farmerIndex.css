@@ -20,9 +20,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-
 }
-
 
 .logo img {
     height: 50px;
@@ -73,6 +71,7 @@ nav ul li a:hover {
 #logout:hover {
     transform: scale(1.1);
 }
+
 body, html {
     height: 100%;
     margin: 0;
@@ -144,6 +143,6 @@ body a {
     color: white;
 }
 
-.btn a{
+.btn a {
     text-decoration: none;
 }

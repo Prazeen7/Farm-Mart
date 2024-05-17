@@ -70,7 +70,9 @@ document.querySelectorAll('nav ul li a').forEach(function (link) {
       window.location.href = 'index.html';
     } else if (page == 'freshProducts') {
       window.location.href = 'freshProducts.html';
-    }
+  } else if (page == 'inquiry') {
+    window.location.href = 'inquiry.html';
+  }
     else {
       changePage(page); // Call the function to load the corresponding page
     }

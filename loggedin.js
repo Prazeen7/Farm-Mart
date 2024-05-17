@@ -49,6 +49,8 @@ document.querySelectorAll('nav ul li a').forEach(function (link) {
             window.location.href = 'loggedin.html';
         } else if (page == 'fPLogin') {
         window.location.href = 'fPLogin.html';
+    } else if(page == 'inquiry'){
+        window.location.href = 'inquiry.html'
     }
     else {
         changePage(page); // Call the function to load the corresponding page

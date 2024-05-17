@@ -1,23 +1,20 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// Check if form is submitted and form fields are not empty
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["productName"]) && !empty($_POST["productPrice"]) && !empty($_POST["productDescription"]) && !empty($_FILES["productImage"])) {
+    // Database connection parameters
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "farmmart";
 
-// Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "farmmart";
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $database);
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
     $productName = $_POST["productName"];
     $productPrice = (int)$_POST["productPrice"];
@@ -32,12 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
     // Check if image file is an actual image or fake image
-    if (isset($_POST["submit"])) {
-        $check = getimagesize($productImage["tmp_name"]);
-        if ($check === false) {
-            echo "File is not an image.";
-            exit;
-        }
+    $check = getimagesize($productImage["tmp_name"]);
+    if ($check === false) {
+        echo "File is not an image.";
+        exit;
     }
 
     // Attempt to move the uploaded file to its new destination
@@ -60,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute() && $stmt2->execute()) {
         echo "New product added successfully";
     } else {
-        echo "Error: " . $stmt->error;
+        echo "Error adding new product";
     }
 
     // Close statement and connection
@@ -68,7 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt2->close();
     $conn->close();
 } else {
-    echo "No data submitted.";
+    echo "Form fields cannot be empty.";
 }
-
 ?>

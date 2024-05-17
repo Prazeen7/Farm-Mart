@@ -3,6 +3,7 @@ window.onload = function () {
 
     if (username) {
         fetchProducts(username);
+        fetchInquiries(username); // Call fetchInquiries to load inquiries
     } else {
         console.error("Username not found in localStorage");
     }
@@ -18,7 +19,19 @@ function fetchProducts(username) {
         }
     };
     xhr.send();
-};
+}
+
+function fetchInquiries(username) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "admininquiry.php?username=" + encodeURIComponent(username), true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var inquiries = JSON.parse(xhr.responseText);
+            displayInquiries(inquiries, username); // Call displayInquiries with fetched inquiries
+        }
+    };
+    xhr.send();
+}
 
 function displayProducts(products, username) {
     const productList = document.getElementById("productList");
@@ -35,22 +48,57 @@ function displayProducts(products, username) {
                 <img src="${product.image}" alt="${product.name}">
                 <h3>${product.name}</h3>
                 <p>Rs. ${product.price}</p>
-                <button onclick="approveProduct(${product.id}, '${product.name}', ${product.price}, '${product.image}', '${username}')">Approve</button>
-                <button>Disapprove</button>
+                <button onclick="updateProductStatus(${product.id}, '${product.name}', ${product.price}, '${product.image}', '${username}', 'approve')">Approve</button>
+                <button onclick="updateProductStatus(${product.id}, '${product.name}', ${product.price}, '${product.image}', '${username}', 'disapprove')">Disapprove</button>
             </div> 
         `;
     });
 }
 
-function approveProduct(productId, productName, productPrice, productImage, username) {
+function displayInquiries(inquiries, username) {
+    const inquiryTable = document.getElementById("inquiryTable").getElementsByTagName('tbody')[0];
+    inquiryTable.innerHTML = '';
+
+    if (inquiries.length === 0) {
+        const noInquiriesRow = inquiryTable.insertRow();
+        const cell = noInquiriesRow.insertCell();
+        cell.colSpan = "6"; // Adjusted colspan for the additional delete button cell
+        cell.textContent = "No inquiries available";
+        return;
+    }
+
+    inquiries.forEach(function (inquiry, index) {
+        const row = inquiryTable.insertRow();
+        row.insertCell().textContent = index+1;
+        row.insertCell().textContent = inquiry.name;
+        row.insertCell().textContent = inquiry.email;
+        row.insertCell().textContent = inquiry.subject;
+        row.insertCell().textContent = inquiry.message;
+        
+        // Add a delete button cell with red text
+        const deleteCell = row.insertCell();
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.style.color = 'red';
+        deleteButton.onclick = function() {
+            deleteInquiry(inquiry.id, username);
+        };
+        deleteCell.appendChild(deleteButton);
+    });
+}
+
+function deleteInquiry(inquiryId, username) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "approve.php", true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.open("POST", "admininquiryd.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            alert(xhr.responseText);
-            fetchProducts(username);
+            // Reload inquiries after deletion
+            fetchInquiries(username);
         }
     };
-    xhr.send("productId=" + productId + "&productName=" + encodeURIComponent(productName) + "&productPrice=" + productPrice + "&productImage=" + encodeURIComponent(productImage) + "&username=" + encodeURIComponent(username));
+    xhr.send("id=" + inquiryId);
 }
+
+
+

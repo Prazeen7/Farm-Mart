@@ -18,42 +18,82 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $productPrice = $_POST['productPrice'];
     $productImage = $_POST['productImage'];
     $username = $_POST['username'];
+    $action = $_POST['action'];
 
-    // Get all table names that match the pattern "table_%"
-    $tablesQuery = "SHOW TABLES LIKE 'table_%'";
-    $tablesResult = $conn->query($tablesQuery);
+    // Initialize response variable
+    $response = "";
 
-    if ($tablesResult->num_rows > 0) {
-        // Iterate over each table
-        while ($tableRow = $tablesResult->fetch_row()) {
-            $tableName = $tableRow[0];
-
-            // Prepare and execute the first update query for products table
+    // Process the action (approve or disapprove)
+    switch ($action) {
+        case 'approve':
+            // Update product status to 'Approved' in the products table
             $sql1 = "UPDATE products SET Admin = 'Approved' WHERE id = ?";
             $stmt1 = $conn->prepare($sql1);
             $stmt1->bind_param("i", $productId);
-            $stmt1->execute();
-
-            // Prepare and execute the second update query for the dynamic table
-            $sql2 = "UPDATE $tableName SET Admin = 'Approved' WHERE name = ? AND price = ? AND image = ?";
-            $stmt2 = $conn->prepare($sql2);
-            $stmt2->bind_param("sds", $productName, $productPrice, $productImage);
-            $stmt2->execute();
-
-            // Check if both updates were successful
-            if ($stmt1->affected_rows > 0 && $stmt2->affected_rows > 0) {
-                echo "Product approved successfully";
-            } 
-
-            // Close prepared statements
+            $approvalSuccess = $stmt1->execute();
             $stmt1->close();
-            $stmt2->close();
-        }
-    } else {
-        echo "No matching tables found";
+
+            // Iterate over each dynamic table and update the product status
+            $tablesQuery = "SHOW TABLES LIKE 'table_%'";
+            $tablesResult = $conn->query($tablesQuery);
+            if ($tablesResult->num_rows > 0) {
+                while ($tableRow = $tablesResult->fetch_row()) {
+                    $tableName = $tableRow[0];
+                    $sql2 = "UPDATE $tableName SET Admin = 'Approved' WHERE name = ? AND price = ? AND image = ?";
+                    $stmt2 = $conn->prepare($sql2);
+                    $stmt2->bind_param("sds", $productName, $productPrice, $productImage);
+                    $approvalSuccess = $stmt2->execute();
+                    $stmt2->close();
+                }
+            } else {
+                $response = "No matching tables found.";
+            }
+
+            if ($approvalSuccess) {
+                $response = "Product approved successfully";
+            } else {
+                $response = "Error approving product.";
+            }
+            break;
+        case 'disapprove':
+            // Delete the product from the products table
+            $sql1 = "DELETE FROM products WHERE id = ?";
+            $stmt1 = $conn->prepare($sql1);
+            $stmt1->bind_param("i", $productId);
+            $disapprovalSuccess = $stmt1->execute();
+            $stmt1->close();
+
+            // Iterate over each dynamic table and delete the product entry
+            $tablesQuery = "SHOW TABLES LIKE 'table_%'";
+            $tablesResult = $conn->query($tablesQuery);
+            if ($tablesResult->num_rows > 0) {
+                while ($tableRow = $tablesResult->fetch_row()) {
+                    $tableName = $tableRow[0];
+                    $sql2 = "DELETE FROM $tableName WHERE name = ? AND price = ? AND image = ?";
+                    $stmt2 = $conn->prepare($sql2);
+                    $stmt2->bind_param("sds", $productName, $productPrice, $productImage);
+                    $disapprovalSuccess = $stmt2->execute();
+                    $stmt2->close();
+                }
+            } else {
+                $response = "No matching tables found.";
+            }
+
+            if ($disapprovalSuccess) {
+                $response = "Product disapproved and deleted successfully";
+            } else {
+                $response = "Error disapproving product.";
+            }
+            break;
+        default:
+            $response = "Invalid action.";
     }
+
+    // Output the response
+    echo $response;
+} else {
+    echo "Invalid request method.";
 }
 
-// Close connection
 $conn->close();
 ?>
