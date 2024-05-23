@@ -40,7 +40,7 @@
             $servername = "localhost"; 
             $username = "root"; 
             $password = ""; 
-            $dbname = "farmmart"; // corrected variable name
+            $dbname = "farmmart"; 
             $conn = new mysqli($servername, $username, $password, $dbname);
 
             // Check connection
@@ -78,7 +78,7 @@
         function placeOrder() {
             // Placeholder function for handling order placement
             alert("Order placed successfully!");
-            // You can add actual order processing logic here
+           
         }
     </script>
 </div>
