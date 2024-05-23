@@ -61,7 +61,7 @@
             $servername = "localhost"; 
             $username = "root"; 
             $password = ""; 
-            $dbname = "farmmart"; // corrected variable name
+            $dbname = "farmmart"; 
             $conn = new mysqli($servername, $username, $password, $dbname);
 
             // Check connection
@@ -70,7 +70,7 @@
             }
 
             // Fetch cart data for the logged-in user with status 1
-            $userId = "samika@gmail.com"; // Replace with the user's email, or fetch it from the session
+            $userId = "samika@gmail.com"; 
             $sql = "SELECT products.name, products.price FROM cart JOIN products ON cart.productId = products.id WHERE cart.userEmail = '$userId' AND cart.status = 1";
             $result = $conn->query($sql);
 
