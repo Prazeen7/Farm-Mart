@@ -6,7 +6,7 @@ document.getElementById('inquiryForm').addEventListener('submit', function(event
 
     // AJAX request to send the form data
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'send_email.php', true); // Replace 'send_email.php' with the path to your server-side script
+    xhr.open('POST', 'send_email.php', true); 
 
     xhr.onload = function() {
         if (xhr.status == 200) {
