@@ -4,7 +4,7 @@ if(isset($_POST['product_id']) && !empty($_POST['product_id'])) {
     // Get the product ID from the request
     $productId = $_POST['product_id'];
 
-    // Replace these variables with your actual database credentials
+    
     $servername = "localhost"; 
     $username = "root"; 
     $password = ""; 
@@ -19,7 +19,7 @@ if(isset($_POST['product_id']) && !empty($_POST['product_id'])) {
             throw new Exception("Connection failed: " . $conn->connect_error);
         }
 
-        // Assume user email is retrieved from session or somewhere else in your application
+     
         $userEmail = "samika@gmail.com"; // Replace this with the actual user's email
 
         // Check if the product is already in the user's cart
