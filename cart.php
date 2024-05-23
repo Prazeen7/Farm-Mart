@@ -57,7 +57,7 @@
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
 
-            // Connect to your database
+            // Connect to database
             $servername = "localhost"; 
             $username = "root"; 
             $password = ""; 
